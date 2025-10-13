@@ -555,7 +555,7 @@ export default function Home() {
                         (11) 4488-2983
                       </a>
                       <p className="text-foreground text-sm md:text-base" data-testid="text-whatsapp">
-                        WhatsApp: (11) 91218-6989
+                        (11) 91218-6989
                       </p>
                     </div>
                   </div>
@@ -757,17 +757,14 @@ export default function Home() {
                   data-testid="link-instagram-dev"
                 >
                   <Instagram className="w-5 h-5" />
-                  <span className="text-xs md:text-sm">@sz_samz - Desenvolvimento de Sites</span>
+                  <span className="text-xs md:text-sm">@sz_samz - Desenvolvedor do Site</span>
                 </a>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
-              <p className="text-xs md:text-sm opacity-80 text-center md:text-left">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-3 md:gap-4">
+              <p className="text-xs md:text-sm opacity-80 text-center">
                 © 2025 Paulistão Center Materiais para Construção. Todos os direitos reservados.
               </p>
-              <div className="flex items-center gap-2 text-xs md:text-sm opacity-80">
-                <span>Made with Emergent</span>
-              </div>
             </div>
           </div>
         </div>
