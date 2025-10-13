@@ -1,13 +1,14 @@
 import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone, ChevronDown, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import logoImage from "@assets/Logo Paulistao2 (2)[1]_1760385086893.png";
-import materiaisBasicosImg from "@assets/stock_images/construction_materia_f070c1e3.jpg";
-import hidraulicaImg from "@assets/stock_images/plumbing_pipes_hydra_6ea7dfc8.jpg";
-import ferramentasImg from "@assets/stock_images/construction_tools_h_04e14987.jpg";
-import eletricaImg from "@assets/stock_images/electrical_wires_cab_358a98c1.jpg";
-import pisosImg from "@assets/stock_images/floor_tiles_ceramic__bd31cf43.jpg";
+import lojaImage from "@assets/Imagem do WhatsApp de 2025-10-13 à(s) 17.58.13_44c408a9_1760389464947.jpg";
+import materiaisBasicosImg from "@assets/stock_images/construction_materia_f1620104.jpg";
+import hidraulicaImg from "@assets/stock_images/plumbing_pipes_pvc_t_8a2b3810.jpg";
+import ferramentasImg from "@assets/stock_images/construction_tools_h_87d1b487.jpg";
+import eletricaImg from "@assets/stock_images/electrical_wires_cab_0c8b8a18.jpg";
+import pisosImg from "@assets/stock_images/floor_tiles_ceramic__19dccd41.jpg";
 
 interface Product {
   name: string;
@@ -106,9 +107,18 @@ const categories: Category[] = [
 
 function CategoryCard({ category }: { category: Category }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isExpanded && cardRef.current) {
+      setTimeout(() => {
+        cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }, [isExpanded]);
 
   return (
-    <Card className="overflow-hidden" data-testid={`card-categoria-${category.id}`}>
+    <Card ref={cardRef} className="overflow-hidden" data-testid={`card-categoria-${category.id}`}>
       <div className="relative aspect-[4/3] overflow-hidden">
         <img 
           src={category.image} 
@@ -201,52 +211,55 @@ export default function Home() {
       <header className="bg-white dark:bg-card border-b sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 md:gap-3">
+            <div className="flex items-center gap-3 md:gap-4">
               <img 
                 src={logoImage} 
                 alt="Paulistão Center" 
-                className="h-10 md:h-12 w-auto object-contain"
+                className="h-14 md:h-16 w-auto object-contain"
                 data-testid="img-logo"
               />
               <div className="hidden sm:block">
+                <h1 className="text-base md:text-lg font-bold text-secondary">Paulistão Center</h1>
                 <p className="text-xs md:text-sm text-muted-foreground">Materiais para Construção</p>
               </div>
             </div>
 
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-              <button onClick={() => scrollToSection('inicio')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-inicio">
-                Início
-              </button>
-              <button onClick={() => scrollToSection('sobre')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-sobre">
-                Sobre Nós
-              </button>
-              <button onClick={() => scrollToSection('catalogo')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-catalogo">
-                Catálogo
-              </button>
-              <button onClick={() => scrollToSection('contato')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-contato">
-                Contato
-              </button>
-            </nav>
+            <div className="flex items-center gap-4 xl:gap-6">
+              <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+                <button onClick={() => scrollToSection('inicio')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-inicio">
+                  Início
+                </button>
+                <button onClick={() => scrollToSection('sobre')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-sobre">
+                  Sobre Nós
+                </button>
+                <button onClick={() => scrollToSection('catalogo')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-catalogo">
+                  Catálogo
+                </button>
+                <button onClick={() => scrollToSection('contato')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-contato">
+                  Contato
+                </button>
+              </nav>
 
-            <div className="flex items-center gap-2">
-              <Button 
-                onClick={handleCall}
-                className="bg-primary text-primary-foreground hidden md:flex" 
-                size="default"
-                data-testid="button-ligue-agora"
-              >
-                Ligue Agora
-              </Button>
-              
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                data-testid="button-mobile-menu"
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button 
+                  onClick={handleCall}
+                  className="bg-primary text-primary-foreground hidden md:flex" 
+                  size="default"
+                  data-testid="button-ligue-agora"
+                >
+                  Ligue Agora
+                </Button>
+                
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="lg:hidden"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  data-testid="button-mobile-menu"
+                >
+                  {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -354,11 +367,11 @@ export default function Home() {
             </div>
 
             <div className="relative mt-8 md:mt-0">
-              <div className="aspect-[4/3] bg-gradient-to-br from-secondary/10 to-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                 <img 
-                  src={logoImage} 
-                  alt="Paulistão Center" 
-                  className="w-3/4 h-auto object-contain opacity-20"
+                  src={lojaImage} 
+                  alt="Loja Paulistão Center" 
+                  className="w-full h-full object-cover"
                 />
               </div>
               <Card className="absolute -bottom-4 md:-bottom-6 left-4 right-4 md:left-6 md:right-6 bg-white dark:bg-card shadow-lg">
@@ -368,7 +381,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-bold text-secondary text-sm md:text-base">Localização Estratégica</p>
-                    <p className="text-xs md:text-sm text-muted-foreground">Francisco Morato - SP</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">Parque Paulista</p>
                   </div>
                 </CardContent>
               </Card>
@@ -677,9 +690,11 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center p-2">
-                  <span className="text-4xl font-bold text-secondary">123</span>
-                </div>
+                <img 
+                  src={logoImage} 
+                  alt="Paulistão Center" 
+                  className="h-16 w-auto object-contain"
+                />
               </div>
               <p className="text-xs md:text-sm opacity-90 mb-3 md:mb-4">
                 Mais de 20 anos construindo sonhos
