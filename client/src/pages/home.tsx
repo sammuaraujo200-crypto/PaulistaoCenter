@@ -1,8 +1,169 @@
-import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone } from "lucide-react";
+import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone, ChevronDown, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import logoImage from "@assets/Logo Paulistao2 (2)[1]_1760385086893.png";
+import materiaisBasicosImg from "@assets/stock_images/construction_materia_f070c1e3.jpg";
+import hidraulicaImg from "@assets/stock_images/plumbing_pipes_hydra_6ea7dfc8.jpg";
+import ferramentasImg from "@assets/stock_images/construction_tools_h_04e14987.jpg";
+import eletricaImg from "@assets/stock_images/electrical_wires_cab_358a98c1.jpg";
+import pisosImg from "@assets/stock_images/floor_tiles_ceramic__bd31cf43.jpg";
+
+interface Product {
+  name: string;
+}
+
+interface Category {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  products: Product[];
+}
+
+const categories: Category[] = [
+  {
+    id: "materiais-basicos",
+    title: "Materiais Básicos",
+    description: "Areia, cimento, pedra, tijolos e muito mais",
+    image: materiaisBasicosImg,
+    products: [
+      { name: "Cimento CP II 50kg" },
+      { name: "Areia Média" },
+      { name: "Pedra Brita 1" },
+      { name: "Cal Hidratada 20kg" },
+      { name: "Ferro 8mm 12m" },
+      { name: "Tijolo Baiano 6 furos" },
+      { name: "Bloco de Concreto" },
+      { name: "Areia Lavada" }
+    ]
+  },
+  {
+    id: "hidraulica",
+    title: "Hidráulica",
+    description: "Tubos, conexões, registros e acessórios",
+    image: hidraulicaImg,
+    products: [
+      { name: "Tubo PVC 20mm" },
+      { name: "Tubo PVC 25mm" },
+      { name: "Conexão Joelho 90° 20mm" },
+      { name: "Registro de Gaveta" },
+      { name: "Válvula de Descarga" },
+      { name: "Sifão Sanfonado" },
+      { name: "Caixa D'água 500L" },
+      { name: "Torneira Lavatório" }
+    ]
+  },
+  {
+    id: "ferramentas",
+    title: "Ferramentas",
+    description: "Martelos, enxadas, machados e diversas ferramentas",
+    image: ferramentasImg,
+    products: [
+      { name: "Martelo Unha 25mm" },
+      { name: "Enxada Larga" },
+      { name: "Pá Reta" },
+      { name: "Colher de Pedreiro" },
+      { name: "Trena 5m" },
+      { name: "Nível de Bolha" },
+      { name: "Serrote" },
+      { name: "Alicate Universal" }
+    ]
+  },
+  {
+    id: "eletrica",
+    title: "Elétrica",
+    description: "Cabos elétricos, lâmpadas, tomadas e interruptores",
+    image: eletricaImg,
+    products: [
+      { name: "Cabo Flexível 2,5mm" },
+      { name: "Cabo Flexível 4mm" },
+      { name: "Tomada 10A" },
+      { name: "Interruptor Simples" },
+      { name: "Lâmpada LED 9W" },
+      { name: "Lâmpada LED 12W" },
+      { name: "Disjuntor 20A" },
+      { name: "Fita Isolante" }
+    ]
+  },
+  {
+    id: "pisos",
+    title: "Pisos e Revestimentos",
+    description: "Pisos, cerâmicas, argamassas e niveladores",
+    image: pisosImg,
+    products: [
+      { name: "Porcelanato 60x60" },
+      { name: "Cerâmica 45x45" },
+      { name: "Argamassa AC-I" },
+      { name: "Argamassa AC-II" },
+      { name: "Rejunte Branco" },
+      { name: "Rejunte Cinza" },
+      { name: "Piso Antiderrapante" },
+      { name: "Rodapé Porcelanato" }
+    ]
+  }
+];
+
+function CategoryCard({ category }: { category: Category }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <Card className="overflow-hidden" data-testid={`card-categoria-${category.id}`}>
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <img 
+          src={category.image} 
+          alt={category.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
+          <h3 className="text-xl md:text-2xl font-bold mb-2">{category.title}</h3>
+          <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">{category.description}</p>
+        </div>
+      </div>
+      
+      <CardContent className="p-0">
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full px-4 md:px-6 py-3 md:py-4 flex items-center justify-between text-left hover-elevate transition-colors"
+          data-testid={`button-ver-produtos-${category.id}`}
+        >
+          <span className="text-sm md:text-base font-medium text-secondary">Ver produtos</span>
+          <ChevronDown className={`w-5 h-5 text-secondary transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+        </button>
+        
+        {isExpanded && (
+          <div className="border-t">
+            <div className="p-4 md:p-6 space-y-2">
+              {category.products.map((product, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center gap-3 py-2 text-sm md:text-base"
+                  data-testid={`product-${category.id}-${index}`}
+                >
+                  <Package className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground">{product.name}</span>
+                </div>
+              ))}
+            </div>
+            <div className="px-4 md:px-6 pb-4 md:pb-6">
+              <Button 
+                onClick={() => {
+                  const phone = "5511912186989";
+                  window.open(`https://wa.me/${phone}?text=Olá! Gostaria de consultar preços de ${category.title}`, "_blank");
+                }}
+                className="w-full bg-primary text-primary-foreground" 
+                data-testid={`button-consultar-precos-${category.id}`}
+              >
+                Consultar Preços
+              </Button>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,55 +192,38 @@ export default function Home() {
   };
 
   const handleMaps = () => {
-    window.open("https://www.google.com/maps/search/?api=1&query=Avenida+S%C3%A3o+Paulo,+1606+-+Parque+Paulista,+Francisco+Morato+-+SP,+07904-030", "_blank");
+    window.open("https://www.google.com/maps/search/?api=1&query=Avenida+São+Paulo+1606+Parque+Paulista+Francisco+Morato+SP+07904-030", "_blank");
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Top Info Bar */}
-      <div className="bg-secondary text-secondary-foreground py-2 hidden md:block">
-        <div className="container mx-auto px-4 flex flex-wrap justify-between items-center text-sm gap-4">
-          <div className="flex items-center gap-6 flex-wrap">
-            <a href="tel:1144882983" className="flex items-center gap-2 hover-elevate px-2 py-1 rounded transition-colors" data-testid="link-phone-top">
-              <Phone className="w-4 h-4" />
-              <span>(11) 4488-2983</span>
-            </a>
-            <button onClick={handleMaps} className="flex items-center gap-2 hover-elevate px-2 py-1 rounded transition-colors" data-testid="link-address-top">
-              <MapPin className="w-4 h-4" />
-              <span>Avenida São Paulo, 1606 - Parque Paulista</span>
-            </button>
-          </div>
-          <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4" />
-            <span>Segunda a Sexta: 8h às 17:30h</span>
-          </div>
-        </div>
-      </div>
-
       {/* Header */}
       <header className="bg-white dark:bg-card border-b sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
               <img 
                 src={logoImage} 
-                alt="Paulistão Center Logo" 
-                className="h-12 md:h-14 w-auto object-contain"
+                alt="Paulistão Center" 
+                className="h-10 md:h-12 w-auto object-contain"
                 data-testid="img-logo"
               />
+              <div className="hidden sm:block">
+                <p className="text-xs md:text-sm text-muted-foreground">Materiais para Construção</p>
+              </div>
             </div>
 
-            <nav className="hidden lg:flex items-center gap-6">
-              <button onClick={() => scrollToSection('inicio')} className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-inicio">
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+              <button onClick={() => scrollToSection('inicio')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-inicio">
                 Início
               </button>
-              <button onClick={() => scrollToSection('sobre')} className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-sobre">
+              <button onClick={() => scrollToSection('sobre')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-sobre">
                 Sobre Nós
               </button>
-              <button onClick={() => scrollToSection('catalogo')} className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-catalogo">
+              <button onClick={() => scrollToSection('catalogo')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-catalogo">
                 Catálogo
               </button>
-              <button onClick={() => scrollToSection('contato')} className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-contato">
+              <button onClick={() => scrollToSection('contato')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-contato">
                 Contato
               </button>
             </nav>
@@ -88,9 +232,9 @@ export default function Home() {
               <Button 
                 onClick={handleCall}
                 className="bg-primary text-primary-foreground hidden md:flex" 
+                size="default"
                 data-testid="button-ligue-agora"
               >
-                <Phone className="w-4 h-4 mr-2" />
                 Ligue Agora
               </Button>
               
@@ -333,92 +477,15 @@ export default function Home() {
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Nosso Catálogo</h2>
             <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto mb-2">
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
               Confira nossas categorias de produtos com materiais de alta qualidade
             </p>
-            <p className="text-xs md:text-sm text-muted-foreground italic">*Imagens ilustrativas</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
-            {/* Materiais Básicos */}
-            <Card className="group overflow-hidden cursor-pointer hover-elevate" data-testid="card-categoria-materiais-basicos">
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-400 to-gray-600 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-400 to-gray-600 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">Materiais Básicos</h3>
-                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Areia, cimento, pedra, tijolos e muito mais</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-materiais-basicos">
-                    Ver produtos
-                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-
-            {/* Hidráulica */}
-            <Card className="group overflow-hidden cursor-pointer hover-elevate" data-testid="card-categoria-hidraulica">
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-blue-400 to-blue-600 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">Hidráulica</h3>
-                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Tubos, conexões, registros e acessórios</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-hidraulica">
-                    Ver produtos
-                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-
-            {/* Ferramentas */}
-            <Card className="group overflow-hidden cursor-pointer hover-elevate" data-testid="card-categoria-ferramentas">
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-yellow-500 to-orange-600 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-orange-600 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">Ferramentas</h3>
-                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Martelos, enxadas, machados e diversas ferramentas</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-ferramentas">
-                    Ver produtos
-                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-
-            {/* Elétrica */}
-            <Card className="group overflow-hidden cursor-pointer hover-elevate" data-testid="card-categoria-eletrica">
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-amber-400 to-amber-700 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-700 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">Elétrica</h3>
-                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Cabos elétricos, lâmpadas, tomadas e interruptores</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-eletrica">
-                    Ver produtos
-                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-
-            {/* Pisos e Revestimentos */}
-            <Card className="group overflow-hidden cursor-pointer hover-elevate sm:col-span-2 lg:col-span-1" data-testid="card-categoria-pisos">
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-stone-400 to-stone-600 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-stone-400 to-stone-600 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">Pisos e Revestimentos</h3>
-                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Pisos, cerâmicas, argamassas e niveladores</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-pisos">
-                    Ver produtos
-                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
+            {categories.map((category) => (
+              <CategoryCard key={category.id} category={category} />
+            ))}
           </div>
 
           {/* CTA Banner */}
@@ -430,12 +497,13 @@ export default function Home() {
               </p>
               <Button 
                 onClick={handleWhatsApp}
-                className="bg-primary text-primary-foreground" 
+                variant="outline"
+                className="border-green-600 text-green-600 hover:bg-green-50" 
                 size="lg" 
                 data-testid="button-whatsapp-catalogo"
               >
                 <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                Fale Conosco via WhatsApp
+                WhatsApp: (11) 91218-6989
               </Button>
             </CardContent>
           </Card>
@@ -467,15 +535,14 @@ export default function Home() {
                       <a href="tel:1144882983" className="text-foreground mb-3 block hover:text-primary transition-colors text-sm md:text-base" data-testid="link-phone">
                         (11) 4488-2983
                       </a>
-                      <Button 
+                      <button 
                         onClick={handleWhatsApp}
-                        className="bg-green-600 text-white w-full sm:w-auto" 
-                        size="sm" 
+                        className="text-foreground hover:text-green-600 transition-colors text-sm md:text-base flex items-center gap-2" 
                         data-testid="button-whatsapp-contato"
                       >
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        WhatsApp: (11) 91218-6989
-                      </Button>
+                        <MessageCircle className="w-4 h-4" />
+                        (11) 91218-6989 (WhatsApp)
+                      </button>
                     </div>
                   </div>
                 </CardContent>
@@ -556,7 +623,7 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-square md:aspect-auto md:h-full bg-muted rounded-xl flex items-center justify-center min-h-[300px] md:min-h-[400px] overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.2947624!2d-46.7437!3d-23.2805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDE2JzQ5LjgiUyA0NsKwNDQnMzcuMyJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                  src="https://www.google.com/maps?q=Avenida+S%C3%A3o+Paulo+1606+Parque+Paulista+Francisco+Morato+SP+07904-030&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -574,12 +641,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-4">
             <Button 
               onClick={handleWhatsApp}
-              className="bg-green-600 text-white w-full sm:w-auto" 
+              variant="outline"
+              className="border-green-600 text-green-600 hover:bg-green-50 w-full sm:w-auto" 
               size="lg" 
               data-testid="button-whatsapp-bottom"
             >
               <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-              WhatsApp
+              WhatsApp: (11) 91218-6989
             </Button>
             <Button 
               onClick={handleCall}
@@ -606,16 +674,14 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-secondary text-secondary-foreground py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img 
-                  src={logoImage} 
-                  alt="Paulistão Center" 
-                  className="h-10 w-auto object-contain brightness-0 invert"
-                />
+                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center p-2">
+                  <span className="text-4xl font-bold text-secondary">123</span>
+                </div>
               </div>
-              <p className="text-xs md:text-sm opacity-80 mb-3 md:mb-4">
+              <p className="text-xs md:text-sm opacity-90 mb-3 md:mb-4">
                 Mais de 20 anos construindo sonhos
               </p>
               <p className="text-xs md:text-sm opacity-80">
@@ -625,7 +691,7 @@ export default function Home() {
 
             <div>
               <h4 className="font-bold mb-3 md:mb-4 text-sm md:text-base">Contato</h4>
-              <div className="space-y-2 text-xs md:text-sm opacity-80">
+              <div className="space-y-2 text-xs md:text-sm opacity-90">
                 <a href="tel:1144882983" className="flex items-center gap-2 hover:opacity-100 transition-opacity">
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span>(11) 4488-2983</span>
@@ -643,18 +709,18 @@ export default function Home() {
 
             <div>
               <h4 className="font-bold mb-3 md:mb-4 text-sm md:text-base">Horário de Funcionamento</h4>
-              <div className="space-y-2 text-xs md:text-sm opacity-80">
+              <div className="space-y-2 text-xs md:text-sm opacity-90">
                 <p className="flex items-center gap-2">
                   <Clock className="w-4 h-4 flex-shrink-0" />
                   Segunda a Sexta: 8h às 17:30h
                 </p>
-                <p className="ml-6">Sábado: 8h às 12h</p>
-                <p className="ml-6">Domingo: Fechado</p>
+                <p>Sábado: 8h às 12h</p>
+                <p>Domingo: Fechado</p>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+          <div className="border-t border-white/20 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
             <p className="text-xs md:text-sm opacity-80 text-center md:text-left">
               © 2025 Paulistão Center Materiais para Construção. Todos os direitos reservados.
             </p>
