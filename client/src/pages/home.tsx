@@ -1,4 +1,4 @@
-import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone, ChevronDown, Package } from "lucide-react";
+import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone, ChevronDown, Package, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useRef, useEffect } from "react";
@@ -554,15 +554,9 @@ export default function Home() {
                       <a href="tel:1144882983" className="text-foreground mb-3 block hover:text-primary transition-colors text-sm md:text-base" data-testid="link-phone">
                         (11) 4488-2983
                       </a>
-                      <Button 
-                        onClick={handleWhatsApp}
-                        className="bg-green-600 text-white hover:bg-green-700" 
-                        size="sm"
-                        data-testid="button-whatsapp-contato"
-                      >
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        WhatsApp
-                      </Button>
+                      <p className="text-foreground text-sm md:text-base" data-testid="text-whatsapp">
+                        WhatsApp: (11) 91218-6989
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -741,12 +735,39 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-white/20 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
-            <p className="text-xs md:text-sm opacity-80 text-center md:text-left">
-              © 2025 Paulistão Center Materiais para Construção. Todos os direitos reservados.
-            </p>
-            <div className="flex items-center gap-2 text-xs md:text-sm opacity-80">
-              <span>Made with Emergent</span>
+          <div className="border-t border-white/20 pt-6 md:pt-8">
+            <div className="flex flex-col items-center gap-4 mb-4">
+              <div className="flex items-center gap-4">
+                <a 
+                  href="https://www.instagram.com/paulistaocenter/?utm_source=ig_web_button_share_sheet" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:opacity-100 transition-opacity opacity-90"
+                  data-testid="link-instagram-loja"
+                >
+                  <Instagram className="w-5 h-5" />
+                  <span className="text-xs md:text-sm">@paulistaocenter</span>
+                </a>
+                <span className="text-white/20">|</span>
+                <a 
+                  href="https://www.instagram.com/sz_samz/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:opacity-100 transition-opacity opacity-90"
+                  data-testid="link-instagram-dev"
+                >
+                  <Instagram className="w-5 h-5" />
+                  <span className="text-xs md:text-sm">@sz_samz - Desenvolvimento de Sites</span>
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+              <p className="text-xs md:text-sm opacity-80 text-center md:text-left">
+                © 2025 Paulistão Center Materiais para Construção. Todos os direitos reservados.
+              </p>
+              <div className="flex items-center gap-2 text-xs md:text-sm opacity-80">
+                <span>Made with Emergent</span>
+              </div>
             </div>
           </div>
         </div>
