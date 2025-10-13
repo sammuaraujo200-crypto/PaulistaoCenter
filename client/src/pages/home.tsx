@@ -713,7 +713,7 @@ export default function Home() {
                 </a>
                 <button onClick={handleWhatsApp} className="flex items-center gap-2 hover:opacity-100 transition-opacity text-left">
                   <MessageCircle className="w-4 h-4 flex-shrink-0" />
-                  <span>WhatsApp</span>
+                  <span>(11) 91218-6989</span>
                 </button>
                 <button onClick={handleMaps} className="flex items-start gap-2 hover:opacity-100 transition-opacity text-left">
                   <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
