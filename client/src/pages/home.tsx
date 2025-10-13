@@ -29,14 +29,16 @@ const categories: Category[] = [
     description: "Areia, cimento, pedra, tijolos e muito mais",
     image: materiaisBasicosImg,
     products: [
-      { name: "Cimento CP II 50kg" },
       { name: "Areia Média" },
-      { name: "Pedra Brita 1" },
-      { name: "Cal Hidratada 20kg" },
+      { name: "Areia Fina" },
+      { name: "Pedra" },
+      { name: "Cimento 50kg" },
+      { name: "Cal 20kg" },
       { name: "Ferro 8mm 12m" },
       { name: "Tijolo Baiano 6 furos" },
-      { name: "Bloco de Concreto" },
-      { name: "Areia Lavada" }
+      { name: "Tijolo Baiano 9 furos" },
+      { name: "Bloco de Cimento" },
+      { name: "Vedalit 1L" }
     ]
   },
   {
@@ -45,13 +47,15 @@ const categories: Category[] = [
     description: "Tubos, conexões, registros e acessórios",
     image: hidraulicaImg,
     products: [
-      { name: "Tubo PVC 20mm" },
-      { name: "Tubo PVC 25mm" },
-      { name: "Conexão Joelho 90° 20mm" },
-      { name: "Registro de Gaveta" },
+      { name: "Tubo PVC 25mm Plastubos" },
+      { name: "Tubo PVC 50mm Plastubos" },
+      { name: "Tubo PVC 100mm Plastubos" },
+      { name: "Conexão Joelho 90° 25mm" },
+      { name: "Registro de Pressão" },
       { name: "Válvula de Descarga" },
       { name: "Sifão Sanfonado" },
       { name: "Caixa D'água 500L" },
+      { name: "Torneira Jardim" },
       { name: "Torneira Lavatório" }
     ]
   },
@@ -68,7 +72,9 @@ const categories: Category[] = [
       { name: "Trena 5m" },
       { name: "Nível de Bolha" },
       { name: "Serrote" },
-      { name: "Alicate Universal" }
+      { name: "Alicate Universal" },
+      { name: "Machado" },
+      { name: "Martelo de Borracha" }
     ]
   },
   {
@@ -93,14 +99,16 @@ const categories: Category[] = [
     description: "Pisos, cerâmicas, argamassas e niveladores",
     image: pisosImg,
     products: [
-      { name: "Porcelanato 60x60" },
       { name: "Cerâmica 45x45" },
       { name: "Argamassa AC-I" },
       { name: "Argamassa AC-II" },
       { name: "Rejunte Branco" },
       { name: "Rejunte Cinza" },
       { name: "Piso Antiderrapante" },
-      { name: "Rodapé Porcelanato" }
+      { name: "Espaçador Nivelador" },
+      { name: "Cunha" },
+      { name: "Máquina de Cortar Piso" },
+      { name: "Espátula para Rejunte" }
     ]
   }
 ];
@@ -356,8 +364,7 @@ export default function Home() {
                 </Button>
                 <Button 
                   onClick={() => scrollToSection('contato')}
-                  variant="outline" 
-                  className="border-primary text-primary w-full sm:w-auto" 
+                  className="bg-primary text-primary-foreground w-full sm:w-auto" 
                   size="lg" 
                   data-testid="button-fale-conosco"
                 >
@@ -510,13 +517,12 @@ export default function Home() {
               </p>
               <Button 
                 onClick={handleWhatsApp}
-                variant="outline"
-                className="border-green-600 text-green-600 hover:bg-green-50" 
+                className="bg-green-600 text-white hover:bg-green-700" 
                 size="lg" 
                 data-testid="button-whatsapp-catalogo"
               >
                 <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                WhatsApp: (11) 91218-6989
+                WhatsApp
               </Button>
             </CardContent>
           </Card>
@@ -548,14 +554,15 @@ export default function Home() {
                       <a href="tel:1144882983" className="text-foreground mb-3 block hover:text-primary transition-colors text-sm md:text-base" data-testid="link-phone">
                         (11) 4488-2983
                       </a>
-                      <button 
+                      <Button 
                         onClick={handleWhatsApp}
-                        className="text-foreground hover:text-green-600 transition-colors text-sm md:text-base flex items-center gap-2" 
+                        className="bg-green-600 text-white hover:bg-green-700" 
+                        size="sm"
                         data-testid="button-whatsapp-contato"
                       >
-                        <MessageCircle className="w-4 h-4" />
-                        (11) 91218-6989 (WhatsApp)
-                      </button>
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        WhatsApp
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -654,13 +661,12 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-4">
             <Button 
               onClick={handleWhatsApp}
-              variant="outline"
-              className="border-green-600 text-green-600 hover:bg-green-50 w-full sm:w-auto" 
+              className="bg-green-600 text-white hover:bg-green-700 w-full sm:w-auto" 
               size="lg" 
               data-testid="button-whatsapp-bottom"
             >
               <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-              WhatsApp: (11) 91218-6989
+              WhatsApp
             </Button>
             <Button 
               onClick={handleCall}
@@ -713,7 +719,7 @@ export default function Home() {
                 </a>
                 <button onClick={handleWhatsApp} className="flex items-center gap-2 hover:opacity-100 transition-opacity text-left">
                   <MessageCircle className="w-4 h-4 flex-shrink-0" />
-                  <span>(11) 91218-6989 (WhatsApp)</span>
+                  <span>WhatsApp</span>
                 </button>
                 <button onClick={handleMaps} className="flex items-start gap-2 hover:opacity-100 transition-opacity text-left">
                   <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
