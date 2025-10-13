@@ -1,7 +1,8 @@
-import { Phone, MapPin, Clock, Shield, Users, Building2, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X } from "lucide-react";
+import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
+import logoImage from "@assets/Logo Paulistao2 (2)[1]_1760385086893.png";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,42 +22,54 @@ export default function Home() {
     }
   };
 
+  const handleCall = () => {
+    window.location.href = "tel:1144882983";
+  };
+
+  const handleWhatsApp = () => {
+    window.open("https://wa.me/5511912186989", "_blank");
+  };
+
+  const handleMaps = () => {
+    window.open("https://www.google.com/maps/search/?api=1&query=Avenida+S%C3%A3o+Paulo,+1606+-+Parque+Paulista,+Francisco+Morato+-+SP,+07904-030", "_blank");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Top Info Bar */}
       <div className="bg-secondary text-secondary-foreground py-2 hidden md:block">
-        <div className="container mx-auto px-4 flex flex-wrap justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
+        <div className="container mx-auto px-4 flex flex-wrap justify-between items-center text-sm gap-4">
+          <div className="flex items-center gap-6 flex-wrap">
+            <a href="tel:1144882983" className="flex items-center gap-2 hover-elevate px-2 py-1 rounded transition-colors" data-testid="link-phone-top">
               <Phone className="w-4 h-4" />
               <span>(11) 4488-2983</span>
-            </div>
-            <div className="flex items-center gap-2">
+            </a>
+            <button onClick={handleMaps} className="flex items-center gap-2 hover-elevate px-2 py-1 rounded transition-colors" data-testid="link-address-top">
               <MapPin className="w-4 h-4" />
               <span>Avenida São Paulo, 1606 - Parque Paulista</span>
-            </div>
+            </button>
           </div>
           <div className="flex items-center gap-2">
+            <Clock className="w-4 h-4" />
             <span>Segunda a Sexta: 8h às 17:30h</span>
           </div>
         </div>
       </div>
 
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-white dark:bg-card border-b sticky top-0 z-50 shadow-sm">
+        <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
-                <Building2 className="w-7 h-7 text-secondary-foreground" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-secondary">Paulistão Center</h1>
-                <p className="text-sm text-muted-foreground">Materiais para Construção</p>
-              </div>
+              <img 
+                src={logoImage} 
+                alt="Paulistão Center Logo" 
+                className="h-12 md:h-14 w-auto object-contain"
+                data-testid="img-logo"
+              />
             </div>
 
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-6">
               <button onClick={() => scrollToSection('inicio')} className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-inicio">
                 Início
               </button>
@@ -72,7 +85,11 @@ export default function Home() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <Button className="bg-primary text-primary-foreground hidden md:flex" data-testid="button-ligue-agora">
+              <Button 
+                onClick={handleCall}
+                className="bg-primary text-primary-foreground hidden md:flex" 
+                data-testid="button-ligue-agora"
+              >
                 <Phone className="w-4 h-4 mr-2" />
                 Ligue Agora
               </Button>
@@ -120,7 +137,11 @@ export default function Home() {
               >
                 Contato
               </button>
-              <Button className="bg-primary text-primary-foreground w-full md:hidden" data-testid="button-ligue-agora-mobile">
+              <Button 
+                onClick={handleCall}
+                className="bg-primary text-primary-foreground w-full md:hidden" 
+                data-testid="button-ligue-agora-mobile"
+              >
                 <Phone className="w-4 h-4 mr-2" />
                 Ligue Agora
               </Button>
@@ -130,46 +151,46 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section id="inicio" className="py-16 md:py-24">
+      <section id="inicio" className="py-12 md:py-20 lg:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-secondary mb-4 md:mb-6 leading-tight">
                 Paulistão Center<br />
                 Materiais para Construção
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8">
                 Materiais de construção de alta qualidade com preço justo. Atendendo profissionais e particulares com excelência há mais de duas décadas.
               </p>
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <Card className="bg-white">
-                  <CardContent className="p-4 text-center">
-                    <Clock className="w-8 h-8 text-secondary mx-auto mb-2" />
-                    <p className="font-bold text-secondary">+20 anos</p>
-                    <p className="text-sm text-muted-foreground">no mercado</p>
+              <div className="grid grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
+                <Card className="bg-white dark:bg-card">
+                  <CardContent className="p-3 md:p-4 text-center">
+                    <Clock className="w-6 h-6 md:w-8 md:h-8 text-secondary mx-auto mb-2" />
+                    <p className="font-bold text-secondary text-sm md:text-base">+20 anos</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">no mercado</p>
                   </CardContent>
                 </Card>
-                <Card className="bg-white">
-                  <CardContent className="p-4 text-center">
-                    <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="font-bold text-secondary">+1000</p>
-                    <p className="text-sm text-muted-foreground">clientes</p>
+                <Card className="bg-white dark:bg-card">
+                  <CardContent className="p-3 md:p-4 text-center">
+                    <Users className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2" />
+                    <p className="font-bold text-secondary text-sm md:text-base">+1000</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">clientes</p>
                   </CardContent>
                 </Card>
-                <Card className="bg-white">
-                  <CardContent className="p-4 text-center">
-                    <Shield className="w-8 h-8 text-secondary mx-auto mb-2" />
-                    <p className="font-bold text-secondary">Qualidade</p>
-                    <p className="text-sm text-muted-foreground">garantida</p>
+                <Card className="bg-white dark:bg-card">
+                  <CardContent className="p-3 md:p-4 text-center">
+                    <Shield className="w-6 h-6 md:w-8 md:h-8 text-secondary mx-auto mb-2" />
+                    <p className="font-bold text-secondary text-sm md:text-base">Qualidade</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">garantida</p>
                   </CardContent>
                 </Card>
               </div>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4">
                 <Button 
                   onClick={() => scrollToSection('catalogo')}
-                  className="bg-secondary text-secondary-foreground" 
+                  className="bg-secondary text-secondary-foreground w-full sm:w-auto" 
                   size="lg" 
                   data-testid="button-ver-catalogo"
                 >
@@ -179,7 +200,7 @@ export default function Home() {
                 <Button 
                   onClick={() => scrollToSection('contato')}
                   variant="outline" 
-                  className="border-primary text-primary" 
+                  className="border-primary text-primary w-full sm:w-auto" 
                   size="lg" 
                   data-testid="button-fale-conosco"
                 >
@@ -188,18 +209,22 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="aspect-[4/3] bg-muted rounded-2xl flex items-center justify-center">
-                <Building2 className="w-32 h-32 text-muted-foreground/30" />
+            <div className="relative mt-8 md:mt-0">
+              <div className="aspect-[4/3] bg-gradient-to-br from-secondary/10 to-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
+                <img 
+                  src={logoImage} 
+                  alt="Paulistão Center" 
+                  className="w-3/4 h-auto object-contain opacity-20"
+                />
               </div>
-              <Card className="absolute -bottom-6 left-6 right-6 bg-white shadow-lg">
-                <CardContent className="p-4 flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-primary" />
+              <Card className="absolute -bottom-4 md:-bottom-6 left-4 right-4 md:left-6 md:right-6 bg-white dark:bg-card shadow-lg">
+                <CardContent className="p-3 md:p-4 flex items-center gap-3">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-bold text-secondary">Localização Estratégica</p>
-                    <p className="text-sm text-muted-foreground">Francisco Morato - SP</p>
+                    <p className="font-bold text-secondary text-sm md:text-base">Localização Estratégica</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">Francisco Morato - SP</p>
                   </div>
                 </CardContent>
               </Card>
@@ -209,92 +234,92 @@ export default function Home() {
       </section>
 
       {/* Sobre Nós Section */}
-      <section id="sobre" className="py-16 md:py-24 bg-muted/30">
+      <section id="sobre" className="py-12 md:py-20 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-3">Sobre Nós</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Sobre Nós</h2>
+            <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
               Tradição, qualidade e compromisso com nossos clientes
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <div>
-              <p className="text-foreground mb-6 leading-relaxed">
+              <p className="text-sm md:text-base text-foreground mb-6 leading-relaxed">
                 Com mais de 20 anos de tradição no mercado de materiais de construção, o Paulistão Center se destaca pela qualidade de seus produtos, pelo atendimento eficiente, pela localização estratégica e pelo compromisso com entregas dentro do prazo. Trabalhamos com marcas reconhecidas e materiais de alta durabilidade, sempre buscando unir preço justo e confiança em cada projeto.
               </p>
 
-              <Card className="bg-secondary/5 border-secondary/20">
-                <CardContent className="p-6">
-                  <h3 className="font-bold text-secondary text-lg mb-3">Nossa Missão</h3>
-                  <p className="text-foreground">
+              <Card className="bg-secondary/5 border-secondary/20 mb-6">
+                <CardContent className="p-4 md:p-6">
+                  <h3 className="font-bold text-secondary text-base md:text-lg mb-3">Nossa Missão</h3>
+                  <p className="text-sm md:text-base text-foreground">
                     Oferecer materiais de construção com qualidade garantida, preços competitivos e atendimento personalizado, contribuindo para que cada cliente realize suas obras com segurança e tranquilidade.
                   </p>
                 </CardContent>
               </Card>
 
               <div>
-                <h3 className="font-bold text-secondary text-lg mb-4">Nossos Valores</h3>
+                <h3 className="font-bold text-secondary text-base md:text-lg mb-4">Nossos Valores</h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">Qualidade</span>
+                    <span className="text-sm md:text-base text-foreground">Qualidade</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">Tradição</span>
+                    <span className="text-sm md:text-base text-foreground">Tradição</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">Atendimento Personalizado</span>
+                    <span className="text-sm md:text-base text-foreground">Atendimento Personalizado</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">Preço Justo</span>
+                    <span className="text-sm md:text-base text-foreground">Preço Justo</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">Confiança</span>
+                    <span className="text-sm md:text-base text-foreground">Confiança</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               <Card className="bg-secondary text-secondary-foreground">
-                <CardContent className="p-6 text-center">
-                  <Clock className="w-12 h-12 mx-auto mb-4" />
-                  <p className="text-3xl font-bold mb-2">+20</p>
-                  <p className="text-sm opacity-90">Anos de Tradição</p>
+                <CardContent className="p-4 md:p-6 text-center">
+                  <Clock className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 md:mb-4" />
+                  <p className="text-2xl md:text-3xl font-bold mb-2">+20</p>
+                  <p className="text-xs md:text-sm opacity-90">Anos de Tradição</p>
                 </CardContent>
               </Card>
 
               <Card className="bg-primary text-primary-foreground">
-                <CardContent className="p-6 text-center">
-                  <Users className="w-12 h-12 mx-auto mb-4" />
-                  <p className="text-3xl font-bold mb-2">+1000</p>
-                  <p className="text-sm opacity-90">Clientes Atendidos</p>
+                <CardContent className="p-4 md:p-6 text-center">
+                  <Users className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 md:mb-4" />
+                  <p className="text-2xl md:text-3xl font-bold mb-2">+1000</p>
+                  <p className="text-xs md:text-sm opacity-90">Clientes Atendidos</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-2">
-                <CardContent className="p-6 text-center">
-                  <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <p className="text-lg font-bold text-secondary mb-2">Localização</p>
-                  <p className="text-sm text-muted-foreground">Estratégica</p>
+              <Card className="bg-white dark:bg-card border-2">
+                <CardContent className="p-4 md:p-6 text-center">
+                  <MapPin className="w-10 h-10 md:w-12 md:h-12 text-primary mx-auto mb-3 md:mb-4" />
+                  <p className="text-base md:text-lg font-bold text-secondary mb-2">Localização</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">Estratégica</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-2">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-                    <svg className="w-12 h-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Card className="bg-white dark:bg-card border-2">
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 md:mb-4 flex items-center justify-center">
+                    <svg className="w-10 h-10 md:w-12 md:h-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <p className="text-lg font-bold text-secondary mb-2">Preços</p>
-                  <p className="text-sm text-muted-foreground">Competitivos</p>
+                  <p className="text-base md:text-lg font-bold text-secondary mb-2">Preços</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">Competitivos</p>
                 </CardContent>
               </Card>
             </div>
@@ -303,29 +328,29 @@ export default function Home() {
       </section>
 
       {/* Catálogo Section */}
-      <section id="catalogo" className="py-16 md:py-24">
+      <section id="catalogo" className="py-12 md:py-20 lg:py-24">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-3">Nosso Catálogo</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-2">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Nosso Catálogo</h2>
+            <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto mb-2">
               Confira nossas categorias de produtos com materiais de alta qualidade
             </p>
-            <p className="text-sm text-muted-foreground italic">*Imagens ilustrativas</p>
+            <p className="text-xs md:text-sm text-muted-foreground italic">*Imagens ilustrativas</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
             {/* Materiais Básicos */}
             <Card className="group overflow-hidden cursor-pointer hover-elevate" data-testid="card-categoria-materiais-basicos">
               <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-400 to-gray-600 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-400 to-gray-600 group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Materiais Básicos</h3>
-                  <p className="text-sm mb-4 opacity-90">Areia, cimento, pedra, tijolos e muito mais</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm" data-testid="button-ver-produtos-materiais-basicos">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">Materiais Básicos</h3>
+                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Areia, cimento, pedra, tijolos e muito mais</p>
+                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-materiais-basicos">
                     Ver produtos
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
                   </Button>
                 </div>
               </div>
@@ -336,12 +361,12 @@ export default function Home() {
               <div className="relative aspect-[4/3] bg-gradient-to-br from-blue-400 to-blue-600 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Hidráulica</h3>
-                  <p className="text-sm mb-4 opacity-90">Tubos, conexões, registros e acessórios</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm" data-testid="button-ver-produtos-hidraulica">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">Hidráulica</h3>
+                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Tubos, conexões, registros e acessórios</p>
+                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-hidraulica">
                     Ver produtos
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
                   </Button>
                 </div>
               </div>
@@ -352,12 +377,12 @@ export default function Home() {
               <div className="relative aspect-[4/3] bg-gradient-to-br from-yellow-500 to-orange-600 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-orange-600 group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Ferramentas</h3>
-                  <p className="text-sm mb-4 opacity-90">Martelos, enxadas, machados e diversas ferramentas</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm" data-testid="button-ver-produtos-ferramentas">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">Ferramentas</h3>
+                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Martelos, enxadas, machados e diversas ferramentas</p>
+                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-ferramentas">
                     Ver produtos
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
                   </Button>
                 </div>
               </div>
@@ -368,28 +393,28 @@ export default function Home() {
               <div className="relative aspect-[4/3] bg-gradient-to-br from-amber-400 to-amber-700 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-700 group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Elétrica</h3>
-                  <p className="text-sm mb-4 opacity-90">Cabos elétricos, lâmpadas, tomadas e interruptores</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm" data-testid="button-ver-produtos-eletrica">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">Elétrica</h3>
+                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Cabos elétricos, lâmpadas, tomadas e interruptores</p>
+                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-eletrica">
                     Ver produtos
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
                   </Button>
                 </div>
               </div>
             </Card>
 
             {/* Pisos e Revestimentos */}
-            <Card className="group overflow-hidden cursor-pointer hover-elevate md:col-span-2 lg:col-span-1" data-testid="card-categoria-pisos">
+            <Card className="group overflow-hidden cursor-pointer hover-elevate sm:col-span-2 lg:col-span-1" data-testid="card-categoria-pisos">
               <div className="relative aspect-[4/3] bg-gradient-to-br from-stone-400 to-stone-600 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-stone-400 to-stone-600 group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Pisos e Revestimentos</h3>
-                  <p className="text-sm mb-4 opacity-90">Pisos, cerâmicas, argamassas e niveladores</p>
-                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm" data-testid="button-ver-produtos-pisos">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">Pisos e Revestimentos</h3>
+                  <p className="text-xs md:text-sm mb-3 md:mb-4 opacity-90">Pisos, cerâmicas, argamassas e niveladores</p>
+                  <Button variant="outline" className="w-fit bg-white/10 border-white text-white backdrop-blur-sm text-xs md:text-sm" data-testid="button-ver-produtos-pisos">
                     Ver produtos
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2" />
                   </Button>
                 </div>
               </div>
@@ -397,14 +422,19 @@ export default function Home() {
           </div>
 
           {/* CTA Banner */}
-          <Card className="bg-white border-2">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold text-secondary mb-4">Não encontrou o que procura?</h3>
-              <p className="text-muted-foreground mb-6">
+          <Card className="bg-white dark:bg-card border-2">
+            <CardContent className="p-6 md:p-8 text-center">
+              <h3 className="text-xl md:text-2xl font-bold text-secondary mb-3 md:mb-4">Não encontrou o que procura?</h3>
+              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
                 Entre em contato conosco! Temos muito mais produtos disponíveis em nossa loja.
               </p>
-              <Button className="bg-primary text-primary-foreground" size="lg" data-testid="button-whatsapp-catalogo">
-                <MessageCircle className="w-5 h-5 mr-2" />
+              <Button 
+                onClick={handleWhatsApp}
+                className="bg-primary text-primary-foreground" 
+                size="lg" 
+                data-testid="button-whatsapp-catalogo"
+              >
+                <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Fale Conosco via WhatsApp
               </Button>
             </CardContent>
@@ -413,29 +443,36 @@ export default function Home() {
       </section>
 
       {/* Contato e Localização Section */}
-      <section id="contato" className="py-16 md:py-24 bg-muted/30">
+      <section id="contato" className="py-12 md:py-20 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-3">Contato e Localização</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Contato e Localização</h2>
+            <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
               Visite nossa loja ou entre em contato conosco
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
+            <div className="space-y-4 md:space-y-6">
               {/* Telefones */}
               <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex items-start gap-3 md:gap-4">
                     <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-secondary" />
+                      <Phone className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-secondary mb-3">Telefones</h3>
-                      <p className="text-foreground mb-2">(11) 4488-2983</p>
-                      <Button className="bg-green-600 text-white" size="sm" data-testid="button-whatsapp-contato">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-secondary mb-3 text-sm md:text-base">Telefones</h3>
+                      <a href="tel:1144882983" className="text-foreground mb-3 block hover:text-primary transition-colors text-sm md:text-base" data-testid="link-phone">
+                        (11) 4488-2983
+                      </a>
+                      <Button 
+                        onClick={handleWhatsApp}
+                        className="bg-green-600 text-white w-full sm:w-auto" 
+                        size="sm" 
+                        data-testid="button-whatsapp-contato"
+                      >
                         <MessageCircle className="w-4 h-4 mr-2" />
                         WhatsApp: (11) 91218-6989
                       </Button>
@@ -446,16 +483,16 @@ export default function Home() {
 
               {/* Endereço */}
               <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex items-start gap-3 md:gap-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-primary" />
+                      <MapPin className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-secondary mb-3">Endereço</h3>
-                      <p className="text-foreground">Avenida São Paulo, 1606 - Parque Paulista</p>
-                      <p className="text-foreground">Francisco Morato – SP</p>
-                      <p className="text-muted-foreground text-sm mt-1">CEP: 07960-200</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-secondary mb-3 text-sm md:text-base">Endereço</h3>
+                      <p className="text-foreground text-sm md:text-base">Avenida São Paulo, 1606 - Parque Paulista</p>
+                      <p className="text-foreground text-sm md:text-base">Francisco Morato – SP</p>
+                      <p className="text-muted-foreground text-xs md:text-sm mt-1">CEP: 07904-030</p>
                     </div>
                   </div>
                 </CardContent>
@@ -463,16 +500,16 @@ export default function Home() {
 
               {/* Horário de Funcionamento */}
               <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex items-start gap-3 md:gap-4">
                     <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-6 h-6 text-secondary" />
+                      <Clock className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-secondary mb-3">Horário de Funcionamento</h3>
-                      <p className="text-foreground">Segunda a Sexta: 8h às 17:30h</p>
-                      <p className="text-foreground">Sábado: 8h às 12h</p>
-                      <p className="text-foreground">Domingo: Fechado</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-secondary mb-3 text-sm md:text-base">Horário de Funcionamento</h3>
+                      <p className="text-foreground text-sm md:text-base">Segunda a Sexta: 8h às 17:30h</p>
+                      <p className="text-foreground text-sm md:text-base">Sábado: 8h às 12h</p>
+                      <p className="text-foreground text-sm md:text-base">Domingo: Fechado</p>
                     </div>
                   </div>
                 </CardContent>
@@ -480,35 +517,33 @@ export default function Home() {
 
               {/* Formas de Pagamento */}
               <Card className="bg-secondary text-secondary-foreground">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex items-start gap-3 md:gap-4">
                     <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <CreditCard className="w-6 h-6" />
+                      <CreditCard className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold mb-4">Formas de Pagamento</h3>
-                      <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold mb-3 md:mb-4 text-sm md:text-base">Formas de Pagamento</h3>
+                      <div className="grid grid-cols-2 gap-3 md:gap-4 mb-3 md:mb-4">
                         <div className="flex items-center gap-2">
-                          <Banknote className="w-5 h-5" />
-                          <span>Dinheiro</span>
+                          <Banknote className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+                          <span className="text-xs md:text-sm">Dinheiro</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18.5c-3.87-.96-7-5.27-7-9.5V8.47l7-3.89 7 3.89V11c0 4.23-3.13 8.54-7 9.5z"/>
-                          </svg>
-                          <span>PIX</span>
+                          <Smartphone className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+                          <span className="text-xs md:text-sm">PIX</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <CreditCard className="w-5 h-5" />
-                          <span>Débito</span>
+                          <CreditCard className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+                          <span className="text-xs md:text-sm">Débito</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <CreditCard className="w-5 h-5" />
-                          <span>Crédito</span>
+                          <CreditCard className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+                          <span className="text-xs md:text-sm">Crédito</span>
                         </div>
                       </div>
                       <div className="pt-3 border-t border-white/20">
-                        <p className="text-sm font-semibold">Parcelamento em até 18x sem juros*</p>
+                        <p className="text-xs md:text-sm font-semibold">Parcelamento em até 18x sem juros*</p>
                         <p className="text-xs opacity-80 mt-1">*Confirme condições na loja</p>
                       </div>
                     </div>
@@ -519,24 +554,49 @@ export default function Home() {
 
             {/* Mapa */}
             <div className="relative">
-              <div className="aspect-square md:aspect-auto md:h-full bg-muted rounded-xl flex items-center justify-center min-h-[400px]">
-                <MapPin className="w-32 h-32 text-muted-foreground/30" />
+              <div className="aspect-square md:aspect-auto md:h-full bg-muted rounded-xl flex items-center justify-center min-h-[300px] md:min-h-[400px] overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.2947624!2d-46.7437!3d-23.2805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDE2JzQ5LjgiUyA0NsKwNDQnMzcuMyJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localização Paulistão Center"
+                  className="rounded-xl"
+                ></iframe>
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-green-600 text-white" size="lg" data-testid="button-whatsapp-bottom">
-              <MessageCircle className="w-5 h-5 mr-2" />
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-4">
+            <Button 
+              onClick={handleWhatsApp}
+              className="bg-green-600 text-white w-full sm:w-auto" 
+              size="lg" 
+              data-testid="button-whatsapp-bottom"
+            >
+              <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               WhatsApp
             </Button>
-            <Button className="bg-secondary text-secondary-foreground" size="lg" data-testid="button-ligar-agora">
-              <Phone className="w-5 h-5 mr-2" />
+            <Button 
+              onClick={handleCall}
+              className="bg-secondary text-secondary-foreground w-full sm:w-auto" 
+              size="lg" 
+              data-testid="button-ligar-agora"
+            >
+              <Phone className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               Ligar Agora
             </Button>
-            <Button className="bg-primary text-primary-foreground" size="lg" data-testid="button-como-chegar">
-              <MapPin className="w-5 h-5 mr-2" />
+            <Button 
+              onClick={handleMaps}
+              className="bg-primary text-primary-foreground w-full sm:w-auto" 
+              size="lg" 
+              data-testid="button-como-chegar"
+            >
+              <MapPin className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               Como Chegar
             </Button>
           </div>
@@ -544,50 +604,48 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-secondary text-secondary-foreground py-12">
+      <footer className="bg-secondary text-secondary-foreground py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
-                  <Building2 className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">Paulistão Center</h3>
-                </div>
+                <img 
+                  src={logoImage} 
+                  alt="Paulistão Center" 
+                  className="h-10 w-auto object-contain brightness-0 invert"
+                />
               </div>
-              <p className="text-sm opacity-80 mb-4">
+              <p className="text-xs md:text-sm opacity-80 mb-3 md:mb-4">
                 Mais de 20 anos construindo sonhos
               </p>
-              <p className="text-sm opacity-80">
+              <p className="text-xs md:text-sm opacity-80">
                 Materiais de construção de qualidade com preço justo há mais de 20 anos.
               </p>
             </div>
 
             <div>
-              <h4 className="font-bold mb-4">Contato</h4>
-              <div className="space-y-2 text-sm opacity-80">
-                <p className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  (11) 4488-2983
-                </p>
-                <p className="flex items-center gap-2">
-                  <MessageCircle className="w-4 h-4" />
-                  (11) 91218-6989 (WhatsApp)
-                </p>
-                <p className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  Avenida São Paulo, 1606 - Parque Paulista<br />
-                  <span className="ml-6">Francisco Morato – SP</span>
-                </p>
+              <h4 className="font-bold mb-3 md:mb-4 text-sm md:text-base">Contato</h4>
+              <div className="space-y-2 text-xs md:text-sm opacity-80">
+                <a href="tel:1144882983" className="flex items-center gap-2 hover:opacity-100 transition-opacity">
+                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  <span>(11) 4488-2983</span>
+                </a>
+                <button onClick={handleWhatsApp} className="flex items-center gap-2 hover:opacity-100 transition-opacity text-left">
+                  <MessageCircle className="w-4 h-4 flex-shrink-0" />
+                  <span>(11) 91218-6989 (WhatsApp)</span>
+                </button>
+                <button onClick={handleMaps} className="flex items-start gap-2 hover:opacity-100 transition-opacity text-left">
+                  <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <span>Avenida São Paulo, 1606 - Parque Paulista<br />Francisco Morato – SP</span>
+                </button>
               </div>
             </div>
 
             <div>
-              <h4 className="font-bold mb-4">Horário de Funcionamento</h4>
-              <div className="space-y-2 text-sm opacity-80">
+              <h4 className="font-bold mb-3 md:mb-4 text-sm md:text-base">Horário de Funcionamento</h4>
+              <div className="space-y-2 text-xs md:text-sm opacity-80">
                 <p className="flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
+                  <Clock className="w-4 h-4 flex-shrink-0" />
                   Segunda a Sexta: 8h às 17:30h
                 </p>
                 <p className="ml-6">Sábado: 8h às 12h</p>
@@ -596,11 +654,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm opacity-80">
+          <div className="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+            <p className="text-xs md:text-sm opacity-80 text-center md:text-left">
               © 2025 Paulistão Center Materiais para Construção. Todos os direitos reservados.
             </p>
-            <div className="flex items-center gap-2 text-sm opacity-80">
+            <div className="flex items-center gap-2 text-xs md:text-sm opacity-80">
               <span>Made with Emergent</span>
             </div>
           </div>
