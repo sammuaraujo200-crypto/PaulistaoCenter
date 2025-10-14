@@ -4,11 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useState, useRef, useEffect } from "react";
 import logoImage from "@assets/Logo Paulistao2 (2)[1]_1760385086893.png";
 import lojaImage from "@assets/Imagem do WhatsApp de 2025-10-13 à(s) 17.58.13_44c408a9_1760389464947.jpg";
-import materiaisBasicosImg from "@assets/stock_images/construction_materia_f1620104.jpg";
-import hidraulicaImg from "@assets/stock_images/plumbing_pipes_pvc_t_8a2b3810.jpg";
-import ferramentasImg from "@assets/stock_images/construction_tools_h_87d1b487.jpg";
-import eletricaImg from "@assets/stock_images/electrical_wires_cab_0c8b8a18.jpg";
-import pisosImg from "@assets/stock_images/floor_tiles_ceramic__19dccd41.jpg";
+import materiaisBasicosImg from "@assets/stock_images/materiais.jpg";
+import hidraulicaImg from "@assets/stock_images/tubos.jpg";
+import ferramentasImg from "@assets/stock_images/ferramentas.jpg";
+import eletricaImg from "@assets/stock_images/eletrica.jpg";
+import pisosImg from "@assets/stock_images/pisos.jpg";
 
 interface Product {
   name: string;
