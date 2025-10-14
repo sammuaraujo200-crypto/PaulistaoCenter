@@ -33,9 +33,11 @@ export default defineConfig(async () => {
     root: path.resolve(import.meta.dirname, "client"),
 
     build: {
-      // 📦 saída do build (onde o Express vai procurar os arquivos)
-      outDir: path.resolve(import.meta.dirname, "dist", "public"),
-      emptyOutDir: true,
+  outDir: path.resolve(import.meta.dirname, "dist", "public"),
+  emptyOutDir: true,
+  assetsDir: "assets",
+  rollupOptions: {
+    output: {
+      assetFileNames: "assets/[name].[hash].[ext]",
     },
-  };
-});
+  },
