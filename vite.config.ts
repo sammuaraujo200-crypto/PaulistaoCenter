@@ -33,14 +33,16 @@ export default defineConfig(async () => {
     root: path.resolve(import.meta.dirname, "client"),
 
     build: {
-      outDir: path.resolve(import.meta.dirname, "dist", "public"),
-      emptyOutDir: true,
-      assetsDir: "assets",
-      rollupOptions: {
-        output: {
-          assetFileNames: "assets/[name].[hash].[ext]",
-        },
-      },
+  outDir: path.resolve(import.meta.dirname, "dist", "public"),
+  emptyOutDir: true,
+  assetsDir: "assets",
+  rollupOptions: {
+    output: {
+      assetFileNames: "assets/[name]-[hash].[ext]",
+      entryFileNames: "assets/[name]-[hash].js",
+      chunkFileNames: "assets/[name]-[hash].js",
     },
+  },
+},
   };
 });
