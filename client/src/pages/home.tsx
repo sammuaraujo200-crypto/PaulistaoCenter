@@ -498,7 +498,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Nosso Catálogo</h2>
             <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
             <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-              Confira nossas categorias de produtos com materiais de alta qualidade
+              Confira nossas categorias de produtos mais procuradas, feitas com materiais de alta qualidade
             </p>
           </div>
 
