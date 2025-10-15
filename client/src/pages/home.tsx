@@ -9,6 +9,8 @@ import hidraulicaImg from "@assets/stock_images/tubos.jpg";
 import ferramentasImg from "@assets/stock_images/ferramentas.jpg";
 import eletricaImg from "@assets/stock_images/eletrica.jpg";
 import pisosImg from "@assets/stock_images/pisos.jpg";
+import { FaWhatsapp } from "react-icons/fa";
+
 
 interface Product {
   name: string;
@@ -521,7 +523,7 @@ export default function Home() {
                 size="lg" 
                 data-testid="button-whatsapp-catalogo"
               >
-                <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                <FaWhatsapp className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 WhatsApp
               </Button>
             </CardContent>
