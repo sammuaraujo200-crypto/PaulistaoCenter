@@ -661,7 +661,7 @@ export default function Home() {
               size="lg" 
               data-testid="button-whatsapp-bottom"
             >
-              <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+              <FaWhatsapp className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               WhatsApp
             </Button>
             <Button 
