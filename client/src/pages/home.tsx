@@ -339,7 +339,7 @@ export default function Home() {
                 <Card className="bg-white dark:bg-card">
                   <CardContent className="p-3 md:p-4 text-center">
                     <Users className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2" />
-                    <p className="font-bold text-secondary text-sm md:text-base">+1000</p>
+                    <p className="font-bold text-secondary text-sm md:text-base">+15000</p>
                     <p className="text-xs md:text-sm text-muted-foreground">clientes</p>
                   </CardContent>
                 </Card>
