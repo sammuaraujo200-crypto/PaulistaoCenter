@@ -23,9 +23,9 @@ const parceiros = [
     logo: "/assets/logos/joao.png",
     link: "https://wa.me/5511999999999",
   },
-  {
+   {
     name: "Center Dias",
-    logo: "/public/assets/logos/logo-center-dias.png",
+    logo: "/logos/logo-center-dias.png",
     link: "https://www.centerdias.com.br",
   },
 ];
@@ -44,7 +44,7 @@ export default function Parcerias() {
 
       {/* Título */}
       <h1 className="text-4xl font-bold text-center text-blue-900 mb-10">
-        Nossos Parceiros
+        Nossos Parceiros 🤝
       </h1>
 
       {/* Cards de parceiros */}
