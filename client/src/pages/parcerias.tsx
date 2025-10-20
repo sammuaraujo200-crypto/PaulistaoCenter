@@ -25,7 +25,7 @@ const parceiros = [
   },
   {
     name: "Center Dias",
-    logo: "/assets/logos/logo-center-dias.png",
+    logo: "/public/assets/logos/logo-center-dias.png",
     link: "https://www.centerdias.com.br",
   },
 ];
