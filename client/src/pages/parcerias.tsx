@@ -24,7 +24,7 @@ const parceiros = [
   {
     name: "Center dias",
     logo: "logo-center-dias.png",
-    link: "https://www.votorantimcimentos.com.br",
+    link: "https://centerdias.com.br/",
   },
 ];
 
