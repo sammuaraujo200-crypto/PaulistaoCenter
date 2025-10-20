@@ -245,6 +245,9 @@ export default function Home() {
                 <button onClick={() => scrollToSection('catalogo')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-catalogo">
                   Catálogo
                 </button>
+               <a href="/parcerias" className="nav-link">
+    Parcerias
+  </a>
                 <button onClick={() => scrollToSection('contato')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-contato">
                   Contato
                 </button>
