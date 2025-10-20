@@ -10,7 +10,7 @@ const parceiros = [
   },
   {
     name: "Tigre",
-    logo: "/logos/logo-center-dias.png",
+    logo: "/logos/tigre.png",
     link: "https://www.tigre.com.br",
   },
   {
