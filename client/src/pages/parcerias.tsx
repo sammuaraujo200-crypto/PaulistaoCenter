@@ -5,7 +5,7 @@ import { Home } from "lucide-react";
 const parceiros = [
   {
     name: "Suvinil",
-    logo: "/logos/logo-center-dias.png",
+    logo: "/logos/suvinil.png",
     link: "https://www.suvinil.com.br",
   },
   {
