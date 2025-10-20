@@ -245,12 +245,10 @@ export default function Home() {
                 <button onClick={() => scrollToSection('catalogo')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-catalogo">
                   Catálogo
                 </button>
-               <button
-  onClick={() => (window.location.href = "/parcerias")}
-  className="text-sm text-gray-700 hover:text-blue-700 transition-colors"
->
-  Parcerias
-</button>
+  <button onClick={() => scrollToSection('parcerias')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-parcerias">
+                  Parcerias
+                </button>
+
                 <button onClick={() => scrollToSection('contato')} className="text-sm text-foreground hover:text-primary transition-colors font-medium" data-testid="link-contato">
                   Contato
                 </button>
