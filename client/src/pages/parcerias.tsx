@@ -16,8 +16,8 @@ const parceiros = [
     link: "https://www.votorantimcimentos.com.br",
   },
   {
-    name: "Representante João",
-    link: "https://wa.me/5511999999999",
+    name: "Representante Jonathas - Paulistão Center",
+    link: "https://wa.me/5511950921997",
   },
   {
     name: "Center Dias",
