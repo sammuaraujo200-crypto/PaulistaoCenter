@@ -23,6 +23,10 @@ const parceiros = [
     name: "Center Dias",
     link: "https://www.centerdias.com.br",
   },
+  {
+    name: "Construtora Momento",
+    link: "https://www.construtoramomento.com.br/",
+  },
 ];
 
 export default function Parcerias() {
