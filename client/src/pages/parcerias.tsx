@@ -5,22 +5,22 @@ import { Link } from "wouter";
 const parceiros = [
   {
     name: "Suvinil",
-    logo: "/assets/logos/suvinil.png",
+    logo: "/logos/logo-center-dias.png",
     link: "https://www.suvinil.com.br",
   },
   {
     name: "Tigre",
-    logo: "/assets/logos/tigre.png",
+    logo: "/logos/logo-center-dias.png",
     link: "https://www.tigre.com.br",
   },
   {
     name: "Votorantim Cimentos",
-    logo: "/assets/logos/votorantim.png",
+    logo: "/logos/logo-center-dias.png",
     link: "https://www.votorantimcimentos.com.br",
   },
   {
     name: "Representante João",
-    logo: "/assets/logos/joao.png",
+    logo: "/logos/logo-center-dias.png",
     link: "https://wa.me/5511999999999",
   },
    {
