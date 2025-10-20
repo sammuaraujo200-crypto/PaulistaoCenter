@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "wouter";
 
 const parceiros = [
   {
@@ -23,35 +24,44 @@ const parceiros = [
   },
   {
     name: "Center dias",
-    logo: "logo-center-dias.png",
-    link: "https://centerdias.com.br/",
+    logo: "/assets/logos/logo-center-dias.png",
+    link: "https://www.centerdias.com.br",
   },
 ];
 
 export default function Parcerias() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-16 px-6">
-      <h1 className="text-4xl font-bold text-blue-900 mb-10">
+    <div className="min-h-screen bg-gray-50 py-12 px-4">
+      {/* Botão voltar */}
+      <div className="max-w-6xl mx-auto mb-6">
+        <Link href="/">
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition">
+            ← Voltar para a página inicial
+          </button>
+        </Link>
+      </div>
+
+      {/* Título */}
+      <h1 className="text-4xl font-bold text-center text-blue-900 mb-10">
         Nossos Parceiros
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl">
-        {parceiros.map((parceiro, index) => (
+      {/* Cards de parceiros */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {parceiros.map((p) => (
           <a
-            key={index}
-            href={parceiro.link}
+            key={p.name}
+            href={p.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition"
+            className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center hover:shadow-lg transition"
           >
             <img
-              src={parceiro.logo}
-              alt={parceiro.name}
+              src={p.logo}
+              alt={p.name}
               className="w-32 h-32 object-contain mb-4"
             />
-            <p className="text-lg font-semibold text-gray-800">
-              {parceiro.name}
-            </p>
+            <h2 className="text-lg font-semibold text-gray-800">{p.name}</h2>
           </a>
         ))}
       </div>
