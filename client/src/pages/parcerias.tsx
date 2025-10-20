@@ -1,29 +1,30 @@
+import { Home } from "lucide-react";
 import React from "react";
 import { Link } from "wouter";
 
 const parceiros = [
   {
     name: "Suvinil",
-    logo: "/logos/suvinil.png",
+    logo: "/assets/logos/suvinil.png",
     link: "https://www.suvinil.com.br",
   },
   {
     name: "Tigre",
-    logo: "/logos/tigre.png",
+    logo: "/assets/logos/tigre.png",
     link: "https://www.tigre.com.br",
   },
   {
     name: "Votorantim Cimentos",
-    logo: "/logos/votorantim.png",
+    logo: "/assets/logos/votorantim.png",
     link: "https://www.votorantimcimentos.com.br",
   },
   {
     name: "Representante João",
-    logo: "/logos/joao.png",
+    logo: "/assets/logos/joao.png",
     link: "https://wa.me/5511999999999",
   },
   {
-    name: "Center dias",
+    name: "Center Dias",
     logo: "/assets/logos/logo-center-dias.png",
     link: "https://www.centerdias.com.br",
   },
@@ -32,12 +33,12 @@ const parceiros = [
 export default function Parcerias() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
-      {/* Botão voltar */}
+      {/* Ícone de Home */}
       <div className="max-w-6xl mx-auto mb-6">
         <Link href="/">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition">
-            ← Voltar para a página inicial
-          </button>
+          <a className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition">
+            <Home className="w-6 h-6" />
+          </a>
         </Link>
       </div>
 
@@ -60,6 +61,9 @@ export default function Parcerias() {
               src={p.logo}
               alt={p.name}
               className="w-32 h-32 object-contain mb-4"
+              onError={(e) =>
+                ((e.target as HTMLImageElement).src = "/assets/logos/placeholder.png")
+              }
             />
             <h2 className="text-lg font-semibold text-gray-800">{p.name}</h2>
           </a>
