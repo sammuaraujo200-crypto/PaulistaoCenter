@@ -12,7 +12,7 @@ const parceiros = [
     link: "https://www.tigre.com.br",
   },
   {
-    name: "Samuel Santos",
+    name: "Criador do Site",
     link: "https://www.instagram.com/sz_samz/",
     logo: "/logos/samuel.png",
   },
@@ -28,6 +28,10 @@ const parceiros = [
   {
     name: "Tintas Coral",
     link: "https://www.coral.com.br/pt",
+  },
+  {
+    name: "Tintas Irajá",
+    link: "https://www.iraja.com.br/",
   },
   {
     name: "Construtora Momento",
@@ -68,17 +72,16 @@ export default function Parcerias() {
                 className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col items-center justify-center p-8 text-center"
               >
                 {/* Container da logo */}
-                <div className="w-28 h-28 flex items-center justify-center bg-white rounded-xl overflow-hidden mb-4">
+                <div className="w-32 h-32 flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden mb-4">
                   <img
                     src={p.logo ? p.logo : `https://logo.clearbit.com/${domain}`}
                     alt={p.name}
                     onError={(e) => {
                       e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
                     }}
-                    className="max-w-full max-h-full object-contain transition-transform duration-300 hover:scale-105"
+                    className="w-full h-full object-contain scale-110 transition-transform duration-300 hover:scale-125"
                     style={{
-                      imageRendering: "crisp-edges",
-                      filter: "none",
+                      imageRendering: "auto",
                     }}
                     loading="lazy"
                   />
