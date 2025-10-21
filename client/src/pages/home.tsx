@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone, ChevronDown, Package, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,6 +16,8 @@ import ferramentasImg from "@assets/stock_images/ferramentas.jpg";
 import eletricaImg from "@assets/stock_images/eletrica.jpg";
 import pisosImg from "@assets/stock_images/pisos.jpg";
 import { FaWhatsapp } from "react-icons/fa";
+import CarrosselCatalogo from "@/components/ui/CarrosselCatalogo";
+
 
 interface Product {
   name: string;
@@ -517,41 +519,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Catálogo Section */}
-      <section id="catalogo" className="py-12 md:py-20 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Nosso Catálogo</h2>
-            <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
-            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-              Confira nossas categorias de produtos mais procuradas, feitas com materiais de alta qualidade
-            </p>
-          </div>
+{/* Catálogo Section */}
+<section id="catalogo" className="py-12 md:py-20 lg:py-24">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-8 md:mb-12">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Nosso Catálogo</h2>
+      <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
+      <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+        Confira nossas categorias de produtos mais procuradas, feitas com materiais de alta qualidade
+      </p>
+    </div>
 
+    {/* === Carrossel: coloque aqui (antes do grid) === */}
+    <div className="mb-8 md:mb-12">
+      <CarrosselCatalogo />
+    </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
             {categories.map((category) => (
               <CategoryCard key={category.id} category={category} />
             ))}
           </div>
 
-          {/* Galeria de Imagens do Catálogo */}
-<div className="mt-12">
-  <h3 className="text-xl md:text-2xl font-bold text-secondary mb-4 text-center">
-    Galeria de Produtos
-  </h3>
-
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
-    {Array.from({ length: 19 }).map((_, i) => (
-      <img
-        key={i}
-        src={`/assets/Catálogo/${34 + i}_20251010_174321_000${i.toString().padStart(1, "0")}.jpg`}
-        alt={`Produto ${i + 1}`}
-        className="w-full h-40 object-cover rounded-lg shadow-sm hover:scale-105 transition-transform"
-        loading="lazy"
-      />
-    ))}
-  </div>
-</div>
           {/* CTA Banner */}
           <Card className="bg-white dark:bg-card border-2">
             <CardContent className="p-6 md:p-8 text-center">
