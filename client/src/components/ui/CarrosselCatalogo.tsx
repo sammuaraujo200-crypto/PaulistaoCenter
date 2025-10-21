@@ -10,7 +10,7 @@ export default function CarrosselCatalogo() {
   const IMAGES_COUNT = 70;
 
   // Caminho: public/assets/Catalogo/1.jpg ... 70.jpg
-  const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) => `/assets/Catalogo/${i + 1}.jpg`);
+  const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) => `/assets/catalogo/${i + 1}.jpg`);
 
   // Quantidade de "bolinhas" que irão aparecer (fixas, ex.: 5)
   const BULLETS = 5;
