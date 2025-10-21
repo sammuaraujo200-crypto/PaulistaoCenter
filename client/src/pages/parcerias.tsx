@@ -77,15 +77,20 @@ export default function Parcerias() {
                       loading="lazy"
                     />
                   ) : (
-                    <img
-                      src={p.logo ? p.logo : `https://logo.clearbit.com/${domain}`}
-                      alt={p.name}
-                      onError={(e) => {
-                        e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
-                      }}
-                      className="w-auto h-14 sm:h-16 object-contain transition-transform duration-300 hover:scale-105"
-                      loading="lazy"
-                    />
+                 <img
+  src={p.logo ? p.logo : `https://logo.clearbit.com/${domain}`}
+  alt={p.name}
+  onError={(e) => {
+    e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+  }}
+  className="w-24 h-24 object-contain mb-4 transition-transform duration-300 hover:scale-105 bg-white p-2 rounded-xl"
+  style={{
+    imageRendering: "crisp-edges",
+    filter: "none",
+  }}
+  loading="lazy"
+/>
+
                   )}
                 </div>
 
