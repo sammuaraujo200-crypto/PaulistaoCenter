@@ -532,17 +532,29 @@ export default function Home() {
       </p>
     </div>
 
-    {/* Grade principal — inclui as categorias e o carrossel */}
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-12">
-    {categories.map((category) => (
-  <CategoryCard key={category.id} category={category} />
-))}
+   {/* Grade principal — inclui as categorias e o carrossel */}
+<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-12">
+  {/* Carrossel vem primeiro */}
+  <div className="flex items-stretch">
+    <Card className="overflow-hidden">
+      <CardContent className="p-0">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+          <CarrosselCatalogo />
+          <div className="absolute bottom-0 left-0 p-4 z-20">
+            <h3 className="text-lg md:text-xl font-bold text-white">Destaques do Catálogo</h3>
+            <p className="text-sm text-gray-200">Produtos em destaque selecionados</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
 
-{/* === Carrossel agora ocupa o "espaço em branco" === */}
-<div className="flex items-stretch">
-  <CarrosselCatalogo />
+  {/* Agora as categorias */}
+  {categories.map((category) => (
+    <CategoryCard key={category.id} category={category} />
+  ))}
 </div>
-    </div>
           {/* CTA Banner */}
           <Card className="bg-white dark:bg-card border-2">
             <CardContent className="p-6 md:p-8 text-center">
