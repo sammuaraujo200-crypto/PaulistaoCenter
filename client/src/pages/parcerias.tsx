@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "wouter";
 import { Home } from "lucide-react";
+const WhatsappLogo = "/assets/WhatsApp.svg"; // sem import
+
 
 const parceiros = [
   {
@@ -19,7 +21,7 @@ const parceiros = [
   {
     name: "Representante Jonathas - Paulistão Center",
     link: "https://wa.me/5511950921997",
-    logo: "/logos/whatsapp.svg",
+    customIcon: "whatsapp", // 👈 identifica o caso especial
   },
   {
     name: "Center Dias",
@@ -72,21 +74,37 @@ export default function Parcerias() {
                 className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col items-center justify-center p-8 text-center"
               >
                 {/* Container da logo */}
-               <div className="w-28 h-28 flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden mb-4">
-  <img
-    src={p.logo ? p.logo : `https://logo.clearbit.com/${domain}`}
-    alt={p.name}
-    onError={(e) => {
-      e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
-    }}
-    className="w-full h-full object-contain scale-105 transition-transform duration-300 hover:scale-115"
-    style={{ imageRendering: "auto" }}
-    loading="lazy"
-  />
-</div>
+                <div className="flex items-center justify-center h-20 mb-4">
+                  {p.customIcon === "whatsapp" ? (
+                    <img
+                      src={WhatsappLogo}
+                      alt="WhatsApp"
+                      className="w-auto h-14 sm:h-16 object-contain transition-transform duration-300 hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-24 h-24 flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
+                      <img
+                        src={
+                          p.logo
+                            ? p.logo
+                            : `https://logo.clearbit.com/${domain}`
+                        }
+                        alt={p.name}
+                        onError={(e) => {
+                          e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+                        }}
+                        className="w-auto h-14 sm:h-16 object-contain transition-transform duration-300 hover:scale-105"
+                        style={{ imageRendering: "auto" }}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                </div>
 
-
-                <h2 className="text-lg font-semibold text-gray-800">{p.name}</h2>
+                <h2 className="text-lg font-semibold text-gray-800">
+                  {p.name}
+                </h2>
               </a>
             );
           })}
