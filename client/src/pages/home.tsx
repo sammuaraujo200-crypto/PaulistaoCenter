@@ -1,3 +1,8 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCircle, CreditCard, Banknote, Menu, X, Smartphone, ChevronDown, Package, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +16,6 @@ import ferramentasImg from "@assets/stock_images/ferramentas.jpg";
 import eletricaImg from "@assets/stock_images/eletrica.jpg";
 import pisosImg from "@assets/stock_images/pisos.jpg";
 import { FaWhatsapp } from "react-icons/fa";
-
 
 interface Product {
   name: string;
@@ -530,6 +534,24 @@ export default function Home() {
             ))}
           </div>
 
+          {/* Galeria de Imagens do Catálogo */}
+<div className="mt-12">
+  <h3 className="text-xl md:text-2xl font-bold text-secondary mb-4 text-center">
+    Galeria de Produtos
+  </h3>
+
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+    {Array.from({ length: 19 }).map((_, i) => (
+      <img
+        key={i}
+        src={`/assets/Catálogo/${34 + i}_20251010_174321_000${i.toString().padStart(1, "0")}.jpg`}
+        alt={`Produto ${i + 1}`}
+        className="w-full h-40 object-cover rounded-lg shadow-sm hover:scale-105 transition-transform"
+        loading="lazy"
+      />
+    ))}
+  </div>
+</div>
           {/* CTA Banner */}
           <Card className="bg-white dark:bg-card border-2">
             <CardContent className="p-6 md:p-8 text-center">
