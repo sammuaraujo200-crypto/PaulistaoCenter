@@ -706,7 +706,6 @@ export default function Home() {
   className="h-14 md:h-16 w-auto object-contain"
   data-testid="img-logo-footer"
 />
-
               </div>
               <p className="text-xs md:text-sm opacity-90 mb-3 md:mb-4">
                 Mais de 20 anos construindo sonhos
