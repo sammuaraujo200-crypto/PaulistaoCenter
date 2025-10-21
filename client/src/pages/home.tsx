@@ -317,6 +317,14 @@ export default function Home() {
                 className="bg-primary text-primary-foreground w-full md:hidden" 
                 data-testid="button-ligue-agora-mobile"
               >
+                <button
+  onClick={() => (window.location.href = "/parcerias")}
+  className="text-sm text-foreground hover:text-primary transition-colors font-medium"
+  data-testid="link-parcerias-mobile"
+>
+  Parcerias
+</button>
+
                 <Phone className="w-4 h-4 mr-2" />
                 Ligue Agora
               </Button>
