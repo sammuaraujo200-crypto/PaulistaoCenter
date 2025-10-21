@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 
 export default function CarrosselCatalogo() {
   // Cria um array com as imagens de 1 a 70
-  const imagens = Array.from({ length: 70 }, (_, i) => `/assets/Catálogo/${i + 1}.jpg`);
+  const imagens = Array.from({ length: 70 }, (_, i) => `/assets/Catalogo/${i + 1}.jpg`);
 
   return (
     <section className="w-full py-12 bg-white">
