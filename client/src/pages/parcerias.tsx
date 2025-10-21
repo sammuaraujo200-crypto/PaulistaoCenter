@@ -26,6 +26,10 @@ const parceiros = [
     name: "Center Dias",
     link: "https://www.centerdias.com.br",
   },
+   {
+    name: "Tintas Coral",
+    link: "https://www.coral.com.br/pt",
+  },
   {
     name: "Construtora Momento",
     link: "https://www.construtoramomento.com.br/",
