@@ -11,7 +11,7 @@ export default function CarrosselCatalogo() {
   return (
     <section className="w-full py-12 bg-white">
       <h2 className="text-3xl font-bold text-center text-primary mb-6">
-        Destaques do Catálogo
+        Destaques do Catálogo!
       </h2>
       <div className="max-w-6xl mx-auto">
         <Swiper
