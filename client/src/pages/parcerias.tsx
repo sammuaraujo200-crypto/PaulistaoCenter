@@ -69,9 +69,11 @@ export default function Parcerias() {
   onError={(e) => {
     e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
   }}
-  className="w-24 h-24 object-contain mb-4 transition-transform duration-300 hover:scale-105"
+  className="w-20 h-20 object-contain mb-4 transition-transform duration-300 hover:scale-105"
+  style={{ imageRendering: "crisp-edges", filter: "none" }}
   loading="lazy"
 />
+
 
 
                 <h2 className="text-lg font-semibold text-gray-800">{p.name}</h2>
