@@ -14,6 +14,7 @@ const parceiros = [
   {
     name: "Samuel Santos",
     link: "https://www.instagram.com/sz_samz/",
+    logo: "/logos/samuel.png",
   },
   {
     name: "Representante Jonathas - Paulistão Center",
