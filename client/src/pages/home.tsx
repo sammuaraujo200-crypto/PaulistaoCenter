@@ -224,7 +224,7 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 md:gap-4">
               <img 
-                src={logoImage} 
+                src={logoFooter} 
                 alt="Paulistão Center" 
                 className="h-14 md:h-16 w-auto object-contain"
                 data-testid="img-logo"
