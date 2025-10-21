@@ -12,8 +12,8 @@ const parceiros = [
     link: "https://www.tigre.com.br",
   },
   {
-    name: "Votorantim Cimentos",
-    link: "https://www.votorantimcimentos.com.br",
+    name: "Samuel Santos",
+    link: "https://www.instagram.com/sz_samz/",
   },
   {
     name: "Representante Jonathas - Paulistão Center",
