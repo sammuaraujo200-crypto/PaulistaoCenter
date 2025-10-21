@@ -10,7 +10,7 @@ export default function CarrosselCatalogo() {
   const IMAGES_COUNT = 70;
 
   // Caminho: public/assets/Catalogo/1.jpg ... 70.jpg
-  const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) => `/assets/catalogo/${i + 1}.jpg`);
+  const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) => `/assets/Catalogo/${i + 1}.jpg`);
 
   // Quantidade de "bolinhas" que irão aparecer (fixas, ex.: 5)
   const BULLETS = 5;
@@ -56,8 +56,8 @@ export default function CarrosselCatalogo() {
 
                 {/* título no canto inferior esquerdo (igual aos cards) */}
                 <div className="absolute left-4 bottom-4 text-white">
-                  <h3 className="text-lg md:text-xl font-bold leading-tight"></h3>
-                  <p className="text-xs md:text-sm opacity-90"></p>
+                  <h3 className="text-lg md:text-xl font-bold leading-tight">Destaques do Catálogo</h3>
+                  <p className="text-xs md:text-sm opacity-90">Produtos em destaque selecionados</p>
                 </div>
               </div>
             </SwiperSlide>
