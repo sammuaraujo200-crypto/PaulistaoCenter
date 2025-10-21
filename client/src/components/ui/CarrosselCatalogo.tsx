@@ -1,40 +1,57 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 export default function CarrosselCatalogo() {
-  // Agora usa apenas as 10 imagens
-  const imagens = Array.from({ length: 10 }, (_, i) => `/assets/Catálogo/${i + 1}.jpg`);
+  // Array com 70 imagens
+  const imagens = Array.from({ length: 70 }, (_, i) => `/assets/Catalogo/${i + 1}.jpg`);
 
   return (
-    <div className="relative bg-white dark:bg-card border rounded-2xl shadow-md overflow-hidden h-[300px] md:h-[320px] flex flex-col">
-      {/* Carrossel */}
-      <Swiper
-        modules={[Pagination, Autoplay]}
-        spaceBetween={0}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 2500, disableOnInteraction: false }}
-        loop
-        className="w-full h-full"
-      >
-        {imagens.map((src, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={src}
-              alt={`Produto ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-              loading="lazy"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="bg-white dark:bg-card border rounded-xl shadow-md overflow-hidden flex flex-col h-full">
+      {/* Cabeçalho */}
+      <div className="p-4 border-b">
+        <h2 className="text-lg md:text-xl font-semibold text-secondary text-center">
+          Destaques do Catálogo
+        </h2>
+      </div>
 
-      {/* Gradiente e texto igual aos outros cards */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-        <h3 className="text-lg md:text-xl font-bold text-white">Destaques do Catálogo</h3>
-        <p className="text-sm text-gray-200">Produtos em destaque selecionados</p>
+      {/* Carrossel */}
+      <div className="flex-1">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={10}
+          slidesPerView={1}
+          navigation
+          loop={true}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          pagination={{
+            clickable: true,
+            renderBullet: (index, className) => {
+              // mostra apenas 5 bolinhas fixas
+              const visibleDots = 5;
+              const total = imagens.length;
+              const ratio = total / visibleDots;
+              const bulletIndex = Math.floor(index / ratio);
+              return bulletIndex < visibleDots
+                ? `<span class="${className}"></span>`
+                : "";
+            },
+          }}
+          className="h-72"
+        >
+          {imagens.map((src, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={src}
+                alt={`Produto ${index + 1}`}
+                className="w-full h-72 object-cover transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
