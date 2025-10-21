@@ -9,37 +9,31 @@ export default function CarrosselCatalogo() {
   const imagens = Array.from({ length: 70 }, (_, i) => `/assets/Catalogo/${i + 1}.jpg`);
 
   return (
-    <section className="w-full py-12 bg-white">
-      <h2 className="text-3xl font-bold text-center text-primary mb-6">
-        Destaques do Catálogo!
-      </h2>
-      <div className="max-w-6xl mx-auto">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={15}
-          slidesPerView={3}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
-          loop={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-        >
-          {imagens.map((src, index) => (
-            <SwiperSlide key={index}>
-              <img
-                src={src}
-                alt={`Produto ${index + 1}`}
-                className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform cursor-pointer"
-                loading="lazy"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </section>
+    <section className="w-full bg-white rounded-xl border shadow-md overflow-hidden">
+  <div className="p-4">
+    <h2 className="text-lg font-semibold text-secondary mb-3 text-center">
+      Destaques do Catálogo
+    </h2>
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={10}
+      slidesPerView={1}
+      autoplay={{ delay: 2500 }}
+      pagination={{ clickable: true }}
+      loop={true}
+    >
+      {imagens.map((src, index) => (
+        <SwiperSlide key={index}>
+          <img
+            src={src}
+            alt={`Produto ${index + 1}`}
+            className="w-full h-48 object-cover rounded-lg"
+            loading="lazy"
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+</section>
   );
 }
