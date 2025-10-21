@@ -523,41 +523,52 @@ export default function Home() {
 <section id="catalogo" className="py-12 md:py-20 lg:py-24">
   <div className="container mx-auto px-4">
     <div className="text-center mb-8 md:mb-12">
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">Nosso Catálogo</h2>
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">
+        Nosso Catálogo
+      </h2>
       <div className="w-20 md:w-24 h-1 bg-primary mx-auto mb-4"></div>
       <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
         Confira nossas categorias de produtos mais procuradas, feitas com materiais de alta qualidade
       </p>
     </div>
 
-    {/* === Carrossel: coloque aqui (antes do grid) === */}
-    <div className="mb-8 md:mb-12">
-      <CarrosselCatalogo />
-    </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
-            {categories.map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
-          </div>
+  {/* Grade principal — inclui as categorias e o carrossel */}
+<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-12">
+  {categories.map((category) => (
+    <React.Fragment key={category.id}>
+      <CategoryCard category={category} />
 
-          {/* CTA Banner */}
-          <Card className="bg-white dark:bg-card border-2">
-            <CardContent className="p-6 md:p-8 text-center">
-              <h3 className="text-xl md:text-2xl font-bold text-secondary mb-3 md:mb-4">Não encontrou o que procura?</h3>
-              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
-                Entre em contato conosco! Temos muito mais produtos disponíveis em nossa loja.
-              </p>
-              <Button 
-                onClick={handleWhatsApp}
-                className="bg-green-600 text-white hover:bg-green-700" 
-                size="lg" 
-                data-testid="button-whatsapp-catalogo"
-              >
-                <FaWhatsapp className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                WhatsApp
-              </Button>
-            </CardContent>
-          </Card>
+      {/* Carrossel ao lado de "Pisos e Revestimentos" */}
+      {category.id === "pisos" && (
+        <div className="flex items-stretch">
+          <CarrosselCatalogo />
+        </div>
+      )}
+    </React.Fragment>
+  ))}
+</div>
+
+{/* CTA Banner */}
+<Card className="bg-white dark:bg-card border-2">
+  <CardContent className="p-6 md:p-8 text-center">
+    <h3 className="text-xl md:text-2xl font-bold text-secondary mb-3 md:mb-4">
+      Não encontrou o que procura?
+    </h3>
+    <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
+      Entre em contato conosco! Temos muito mais produtos disponíveis em nossa loja.
+    </p>
+    <Button
+      onClick={handleWhatsApp}
+      className="bg-green-600 text-white hover:bg-green-700"
+      size="lg"
+      data-testid="button-whatsapp-catalogo"
+    >
+      <FaWhatsapp className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+      WhatsApp
+    </Button>
+  </CardContent>
+</Card>
+
         </div>
       </section>
 
