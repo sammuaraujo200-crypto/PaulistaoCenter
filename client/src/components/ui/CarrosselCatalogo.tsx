@@ -56,8 +56,8 @@ export default function CarrosselCatalogo() {
 
                 {/* título no canto inferior esquerdo (igual aos cards) */}
                 <div className="absolute left-4 bottom-4 text-white">
-                  <h3 className="text-lg md:text-xl font-bold leading-tight">Destaques do Catálogo</h3>
-                  <p className="text-xs md:text-sm opacity-90">Produtos em destaque selecionados</p>
+                  <h3 className="text-lg md:text-xl font-bold leading-tight"></h3>
+                  <p className="text-xs md:text-sm opacity-90"></p>
                 </div>
               </div>
             </SwiperSlide>
