@@ -29,6 +29,7 @@ const parceiros = [
   {
     name: "Tintas Coral",
     link: "https://www.coral.com.br/pt",
+    logo: "/logos/coral.png",
   },
   {
     name: "Tintas Irajá",
