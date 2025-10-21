@@ -27,6 +27,18 @@ const parceiros = [
     link: "https://www.centerdias.com.br",
   },
   {
+    name: "Center Fertin",
+    link: "https://www.centerfertin.com.br/",
+  },
+  {
+    name: "Construjá",
+    link: "https://www.construja.com.br/",
+  },
+   {
+    name: "Megaleste",
+    link: "https://www.megaleste.com.br/sp",
+  },
+  {
     name: "Tintas Coral",
     link: "https://www.coral.com.br/pt",
     logo: "/logos/coral.png",
