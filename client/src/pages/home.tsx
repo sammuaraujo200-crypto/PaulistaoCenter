@@ -542,8 +542,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
           <CarrosselCatalogo />
           <div className="absolute bottom-0 left-0 p-4 z-20">
-            <h3 className="text-lg md:text-xl font-bold text-white">Destaques do Catálogo</h3>
-            <p className="text-sm text-gray-200">Produtos em destaque selecionados</p>
+            <h3 className="text-lg md:text-xl font-bold text-white"></h3>
+            <p className="text-sm text-gray-200"></p>
           </div>
         </div>
       </CardContent>
