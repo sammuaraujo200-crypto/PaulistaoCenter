@@ -2,7 +2,8 @@ import { Phone, MapPin, Clock, Shield, Users, CheckCircle, ArrowRight, MessageCi
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useRef, useEffect } from "react";
-import logoImage from "@assets/Logo Paulistao2 (2)[1]_1760385086893.png";
+import logoHeader from "@assets/logoHeader.png";
+import logoFooter from "@assets/logoFooter.png";
 import lojaImage from "@assets/Imagem do WhatsApp de 2025-10-13 à(s) 17.58.13_44c408a9_1760389464947.jpg";
 import materiaisBasicosImg from "@assets/stock_images/materiais.jpg";
 import hidraulicaImg from "@assets/stock_images/tubos.jpg";
@@ -700,10 +701,12 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <img 
-                  src={logoImage} 
-                  alt="Paulistão Center" 
-                  className="h-16 w-auto object-contain"
-                />
+  src={logoFooter} 
+  alt="Paulistão Center" 
+  className="h-14 md:h-16 w-auto object-contain"
+  data-testid="img-logo-footer"
+/>
+
               </div>
               <p className="text-xs md:text-sm opacity-90 mb-3 md:mb-4">
                 Mais de 20 anos construindo sonhos
