@@ -281,55 +281,59 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <nav className="lg:hidden mt-4 pb-4 border-t pt-4 space-y-3">
-              <button 
-                onClick={() => scrollToSection('inicio')} 
-                className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-mobile-inicio"
-              >
-                Início
-              </button>
-              <button 
-                onClick={() => scrollToSection('sobre')} 
-                className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-mobile-sobre"
-              >
-                Sobre Nós
-              </button>
-              <button 
-                onClick={() => scrollToSection('catalogo')} 
-                className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-mobile-catalogo"
-              >
-                Catálogo
-              </button>
-              <button 
-                onClick={() => scrollToSection('contato')} 
-                className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-mobile-contato"
-              >
-                Contato
-              </button>
-              <Button 
-                onClick={handleCall}
-                className="bg-primary text-primary-foreground w-full md:hidden" 
-                data-testid="button-ligue-agora-mobile"
-              >
-                <button
-  onClick={() => (window.location.href = "/parcerias")}
-  className="text-sm text-foreground hover:text-primary transition-colors font-medium"
-  data-testid="link-parcerias-mobile"
->
-  Parcerias
-</button>
+{/* Mobile Menu */}
+{mobileMenuOpen && (
+  <nav className="lg:hidden mt-4 pb-4 border-t pt-4 space-y-3">
+    <button 
+      onClick={() => scrollToSection('inicio')} 
+      className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
+      data-testid="link-mobile-inicio"
+    >
+      Início
+    </button>
+    <button 
+      onClick={() => scrollToSection('sobre')} 
+      className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
+      data-testid="link-mobile-sobre"
+    >
+      Sobre Nós
+    </button>
+    <button 
+      onClick={() => scrollToSection('catalogo')} 
+      className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
+      data-testid="link-mobile-catalogo"
+    >
+      Catálogo
+    </button>
+    <button 
+      onClick={() => scrollToSection('contato')} 
+      className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
+      data-testid="link-mobile-contato"
+    >
+      Contato
+    </button>
 
-                <Phone className="w-4 h-4 mr-2" />
-                Ligue Agora
-              </Button>
-            </nav>
-          )}
+    {/* ✅ Novo botão Parcerias separado */}
+    <button
+      onClick={() => (window.location.href = "/parcerias")}
+      className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
+      data-testid="link-mobile-parcerias"
+    >
+      Parcerias
+    </button>
+
+    {/* Botão laranja Ligue Agora */}
+    <Button 
+      onClick={handleCall}
+      className="bg-primary text-primary-foreground w-full md:hidden flex items-center justify-center py-3 mt-2" 
+      data-testid="button-ligue-agora-mobile"
+    >
+      <Phone className="w-4 h-4 mr-2" />
+      Ligue Agora
+    </Button>
+  </nav>
+)}
+
         </div>
       </header>
 
