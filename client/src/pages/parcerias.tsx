@@ -19,6 +19,7 @@ const parceiros = [
   {
     name: "Representante Jonathas - Paulistão Center",
     link: "https://wa.me/5511950921997",
+    logo: "/logos/samuel.png",
   },
   {
     name: "Center Dias",
