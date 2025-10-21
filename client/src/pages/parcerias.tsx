@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
 import { Home } from "lucide-react";
-import { ReactComponent as WhatsappLogo } from "@/assets/whatsapp.svg";
-
+const WhatsappLogo = "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg";
 
 const parceiros = [
   {
@@ -21,7 +20,7 @@ const parceiros = [
   {
     name: "Representante Jonathas - Paulistão Center",
     link: "https://wa.me/5511950921997",
-    logo: "/logos/whatsapp.svg",
+    customIcon: "whatsapp",
   },
   {
     name: "Center Dias",
@@ -63,20 +62,28 @@ export default function Parcerias() {
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col items-center justify-center p-8 text-center"
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col items-center justify-center p-8 text-center h-44"
               >
-               <img
-  src={p.logo ? p.logo : `https://logo.clearbit.com/${domain}`}
-  alt={p.name}
-  onError={(e) => {
-    e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
-  }}
-  className="w-20 h-20 object-contain mb-4 transition-transform duration-300 hover:scale-105"
-  style={{ imageRendering: "crisp-edges", filter: "none" }}
-  loading="lazy"
-/>
-
-
+                <div className="flex items-center justify-center h-16 mb-4">
+                  {p.customIcon === "whatsapp" ? (
+                    <img
+                      src={WhatsappLogo}
+                      alt="WhatsApp"
+                      className="w-auto h-14 sm:h-16 object-contain transition-transform duration-300 hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <img
+                      src={p.logo ? p.logo : `https://logo.clearbit.com/${domain}`}
+                      alt={p.name}
+                      onError={(e) => {
+                        e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+                      }}
+                      className="w-auto h-14 sm:h-16 object-contain transition-transform duration-300 hover:scale-105"
+                      loading="lazy"
+                    />
+                  )}
+                </div>
 
                 <h2 className="text-lg font-semibold text-gray-800">{p.name}</h2>
               </a>
