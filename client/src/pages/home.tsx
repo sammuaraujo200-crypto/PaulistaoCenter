@@ -532,43 +532,35 @@ export default function Home() {
       </p>
     </div>
 
-  {/* Grade principal — inclui as categorias e o carrossel */}
-<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-12">
-  {categories.map((category) => (
-    <React.Fragment key={category.id}>
-      <CategoryCard category={category} />
+    {/* Grade principal — inclui as categorias e o carrossel */}
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-12">
+    {categories.map((category) => (
+  <CategoryCard key={category.id} category={category} />
+))}
 
-      {/* Carrossel ao lado de "Pisos e Revestimentos" */}
-      {category.id === "pisos" && (
-        <div className="flex items-stretch">
-          <CarrosselCatalogo />
-        </div>
-      )}
-    </React.Fragment>
-  ))}
+{/* === Carrossel agora ocupa o "espaço em branco" === */}
+<div className="flex items-stretch">
+  <CarrosselCatalogo />
 </div>
-
-{/* CTA Banner */}
-<Card className="bg-white dark:bg-card border-2">
-  <CardContent className="p-6 md:p-8 text-center">
-    <h3 className="text-xl md:text-2xl font-bold text-secondary mb-3 md:mb-4">
-      Não encontrou o que procura?
-    </h3>
-    <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
-      Entre em contato conosco! Temos muito mais produtos disponíveis em nossa loja.
-    </p>
-    <Button
-      onClick={handleWhatsApp}
-      className="bg-green-600 text-white hover:bg-green-700"
-      size="lg"
-      data-testid="button-whatsapp-catalogo"
-    >
-      <FaWhatsapp className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-      WhatsApp
-    </Button>
-  </CardContent>
-</Card>
-
+    </div>
+          {/* CTA Banner */}
+          <Card className="bg-white dark:bg-card border-2">
+            <CardContent className="p-6 md:p-8 text-center">
+              <h3 className="text-xl md:text-2xl font-bold text-secondary mb-3 md:mb-4">Não encontrou o que procura?</h3>
+              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
+                Entre em contato conosco! Temos muito mais produtos disponíveis em nossa loja.
+              </p>
+              <Button 
+                onClick={handleWhatsApp}
+                className="bg-green-600 text-white hover:bg-green-700" 
+                size="lg" 
+                data-testid="button-whatsapp-catalogo"
+              >
+                <FaWhatsapp className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                WhatsApp
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
