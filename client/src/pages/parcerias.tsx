@@ -5,17 +5,17 @@ const WhatsappLogo = "/assets/WhatsApp.svg"; // sem import
 
 const parceiros = [
   {
+    name: "Criador do Site",
+    link: "https://www.instagram.com/sz_samz/",
+    logo: "/logos/samuel.png",
+  },
+  {
     name: "Suvinil",
     link: "https://www.suvinil.com.br",
   },
   {
     name: "Tigre",
     link: "https://www.tigre.com.br",
-  },
-  {
-    name: "Criador do Site",
-    link: "https://www.instagram.com/sz_samz/",
-    logo: "/logos/samuel.png",
   },
   {
     name: "Representante Jonathas - Paulistão Center",
