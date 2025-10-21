@@ -3,7 +3,6 @@ import { Link } from "wouter";
 import { Home } from "lucide-react";
 const WhatsappLogo = "/assets/WhatsApp.svg"; // sem import
 
-
 const parceiros = [
   {
     name: "Suvinil",
@@ -74,7 +73,15 @@ export default function Parcerias() {
                 className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 flex flex-col items-center justify-center p-8 text-center"
               >
                 {/* Container da logo */}
-                <div className="flex items-center justify-center h-20 mb-4">
+                <div
+                  className={`flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden mb-4 ${
+                    ["Suvinil", "Center Dias", "Criador do Site"].includes(
+                      p.name
+                    )
+                      ? "w-36 h-36" // logos maiores
+                      : "w-24 h-24" // tamanho padrão
+                  }`}
+                >
                   {p.customIcon === "whatsapp" ? (
                     <img
                       src={WhatsappLogo}
@@ -83,22 +90,20 @@ export default function Parcerias() {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-24 h-24 flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
-                      <img
-                        src={
-                          p.logo
-                            ? p.logo
-                            : `https://logo.clearbit.com/${domain}`
-                        }
-                        alt={p.name}
-                        onError={(e) => {
-                          e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
-                        }}
-                        className="w-auto h-14 sm:h-16 object-contain transition-transform duration-300 hover:scale-105"
-                        style={{ imageRendering: "auto" }}
-                        loading="lazy"
-                      />
-                    </div>
+                    <img
+                      src={
+                        p.logo
+                          ? p.logo
+                          : `https://logo.clearbit.com/${domain}`
+                      }
+                      alt={p.name}
+                      onError={(e) => {
+                        e.currentTarget.src = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+                      }}
+                      className="max-w-full max-h-full object-contain transition-transform duration-300 hover:scale-105"
+                      style={{ imageRendering: "auto" }}
+                      loading="lazy"
+                    />
                   )}
                 </div>
 
