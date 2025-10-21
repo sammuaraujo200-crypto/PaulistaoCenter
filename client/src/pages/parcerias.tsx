@@ -31,6 +31,18 @@ const parceiros = [
     link: "https://www.centerfertin.com.br/",
   },
   {
+    name: "Gama Distribuidora",
+    link: "https://www.gamatintas.com.br/",
+  },
+  {
+    name: "Tambasa Atacadista",
+    link: "https://tambasa.com/",
+  },
+   {
+    name: "Quartzolit",
+    link: "https://www.quartzolit.weber/?gad_source=1&gad_campaignid=22603633862&gbraid=0AAAAADy41usTugHNUNFh65FyhH0sjPYxO&gclid=CjwKCAjw3tzHBhBREiwAlMJoUjGutRidNpXOYMoRQB7CGfQPAcPHtfYTtxzwW3QeGSkBWhrHWJHHAhoCCM0QAvD_BwE",
+  },
+  {
     name: "Construjá",
     link: "https://www.construja.com.br/",
   },
