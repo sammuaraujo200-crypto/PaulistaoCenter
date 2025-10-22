@@ -58,7 +58,7 @@ export default function CarrosselCatalogo() {
 <div className="px-6 py-4 bg-white border-t border-white/20 rounded-b-2xl z-20 relative">
   <div className="flex items-center justify-between">
     <div>
-      <h3 className="text-lg font-semibold text-gray-900">Destaques do Catálogo</h3>
+      <h3 className="text-base font-semibold text-primary">Destaques do Catálogo</h3>
     </div>
     <div className="flex items-center gap-2">
       {Array.from({ length: BULLETS }).map((_, i) => {
