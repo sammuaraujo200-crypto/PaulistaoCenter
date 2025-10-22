@@ -62,6 +62,7 @@ const parceiros = [
   {
     name: "Prisma Esquadrias de Alumínio",
     link: "https://www.prismaesquadrias.com.br/",
+    logo: "/prisma.png",
   },
   {
     name: "Construtora Momento",
