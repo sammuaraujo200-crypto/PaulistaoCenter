@@ -13,13 +13,13 @@ export default function CarrosselCatalogo() {
   const imagens = Array.from({ length: 70 }, (_, i) => `/catalogo/${i + 1}.jpg`);
   const BULLETS = 5; // número fixo de bolinhas
 
-  return (
-   <div className="relative rounded-2xl overflow-hidden shadow-lg bg-white h-auto">
+ return (
+  <div className="relative w-full overflow-hidden rounded-2xl shadow-md bg-white flex flex-col h-full">
       <Swiper
         modules={[Navigation, Autoplay]}
         onSwiper={(s) => (swiperRef.current = s)}
         onSlideChange={(s) => setActiveIndex(s.realIndex ?? s.activeIndex)}
-        spaceBetween={10}
+        spaceBetween={8}
         slidesPerView={1}
         navigation={{
           nextEl: ".next-btn",
@@ -30,19 +30,17 @@ export default function CarrosselCatalogo() {
         className="w-full"
       >
         {imagens.map((src, idx) => (
-          <SwiperSlide key={idx}>
-            <div className="relative aspect-[4/3] overflow-hidden bg-white">
-              <img
-                src={src}
-                alt={`Produto ${idx + 1}`}
-                className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
-                loading="lazy"
-                onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
-              />
-              {/* Gradiente escuro somente sobre a imagem */}
-              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
-            </div>
-          </SwiperSlide>
+       <SwiperSlide key={idx}>
+  <div className="w-full h-[250px] sm:h-[300px] md:h-[350px] flex items-center justify-center bg-gray-50">
+    <img
+      src={src}
+      alt={`Produto ${idx + 1}`}
+      className="max-h-full w-auto object-contain transition-transform duration-300 hover:scale-105"
+      loading="lazy"
+      onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
+    />
+  </div>
+</SwiperSlide>
         ))}
       </Swiper>
 
@@ -55,19 +53,19 @@ export default function CarrosselCatalogo() {
       </button>
 
       {/* Rodapé — igual ao “Ver produtos” */}
-<div className="px-6 py-4 bg-white border-t border-white/100 rounded-b-2xl z-20 relative">
-  <div className="flex items-center justify-between">
-    <div>
-      <h3 className="text-base font-semibold text-blue-800">Destaques do Catálogo</h3>
-    </div>
-    <div className="flex items-center gap-2">
-      {Array.from({ length: BULLETS }).map((_, i) => {
-        const isActive = activeIndex % BULLETS === i;
-        return (
-          <div
-            key={i}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${
-              isActive ? "bg-primary scale-110" : "bg-gray-300"
+      <div className="px-6 py-4 bg-white border-t border-gray-100 rounded-b-2xl z-20 relative">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-base font-semibold text-blue-800">Destaques do Catálogo</h3>
+          </div>
+          <div className="flex items-center gap-2">
+            {Array.from({ length: BULLETS }).map((_, i) => {
+              const isActive = activeIndex % BULLETS === i;
+              return (
+                <div
+                  key={i}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${
+                    isActive ? "bg-primary scale-110" : "bg-gray-300"
                   }`}
                 />
               );
