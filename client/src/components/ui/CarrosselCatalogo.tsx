@@ -9,8 +9,9 @@ export default function CarrosselCatalogo() {
   const swiperRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const imagens = Array.from({ length: 10 }, (_, i) => `/catalogo/${i + 1}.jpg`);
-  const BULLETS = imagens.length; // uma bolinha por slide
+  // Prepara até 70 imagens (pode aumentar sem alterar lógica)
+  const imagens = Array.from({ length: 70 }, (_, i) => `/catalogo/${i + 1}.jpg`);
+  const BULLETS = imagens.length;
 
   return (
     <div className="relative rounded-2xl overflow-hidden shadow-lg h-full">
@@ -44,7 +45,7 @@ export default function CarrosselCatalogo() {
         ))}
       </Swiper>
 
-      {/* Botões */}
+      {/* Botões de navegação */}
       <button className="prev-btn absolute top-1/2 left-2 z-30 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 rounded-full p-2 shadow-md">
         ❮
       </button>
@@ -52,10 +53,12 @@ export default function CarrosselCatalogo() {
         ❯
       </button>
 
-      {/* Rodapé com bolinhas sincronizadas */}
-      <div className="px-4 py-3 bg-transparent relative z-20 rounded-b-2xl">
+      {/* Rodapé idêntico à seção “Materiais Básicos” */}
+      <div className="px-6 py-3 bg-transparent relative z-20 rounded-b-2xl">
         <div className="flex items-center justify-between">
-          <div className="text-sm font-medium text-secondary">Destaques do Catálogo</div>
+          <div className="text-base font-semibold text-primary hover:underline cursor-pointer">
+            Destaques do Catálogo
+          </div>
           <div className="flex items-center gap-2">
             {Array.from({ length: BULLETS }).map((_, i) => {
               const isActive = activeIndex === i;
