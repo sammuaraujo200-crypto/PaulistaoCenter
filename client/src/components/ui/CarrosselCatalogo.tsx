@@ -9,15 +9,9 @@ export default function CarrosselCatalogo() {
   const swiperRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Total de imagens (70 no momento)
+  // Prepara até 70 imagens (pode aumentar sem alterar lógica)
   const imagens = Array.from({ length: 70 }, (_, i) => `/catalogo/${i + 1}.jpg`);
-
-  // Mostra só 10 bolinhas representando grupos de imagens
-  const BULLETS = 10;
-  const groupSize = Math.ceil(imagens.length / BULLETS);
-
-  // Calcula qual bolinha está ativa com base no slide atual
-  const bulletIndex = Math.floor(activeIndex / groupSize);
+  const BULLETS = imagens.length;
 
   return (
     <div className="relative rounded-2xl overflow-hidden shadow-lg h-full">
@@ -67,7 +61,7 @@ export default function CarrosselCatalogo() {
           </div>
           <div className="flex items-center gap-2">
             {Array.from({ length: BULLETS }).map((_, i) => {
-              const isActive = bulletIndex === i;
+              const isActive = activeIndex === i;
               return (
                 <div
                   key={i}
