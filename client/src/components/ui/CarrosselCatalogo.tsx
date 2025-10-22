@@ -9,12 +9,12 @@ export default function CarrosselCatalogo() {
   const swiperRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Prepara até 70 imagens (pode aumentar sem alterar lógica)
   const imagens = Array.from({ length: 70 }, (_, i) => `/catalogo/${i + 1}.jpg`);
-  const BULLETS = imagens.length;
+  const BULLETS = 5; // mostra só 5 bolinhas
+  const step = Math.ceil(imagens.length / BULLETS);
 
   return (
-    <div className="relative rounded-2xl overflow-hidden shadow-lg h-full">
+    <div className="relative rounded-2xl overflow-hidden shadow-lg bg-white h-full">
       <Swiper
         modules={[Navigation, Autoplay]}
         onSwiper={(s) => (swiperRef.current = s)}
@@ -31,7 +31,7 @@ export default function CarrosselCatalogo() {
       >
         {imagens.map((src, idx) => (
           <SwiperSlide key={idx}>
-            <div className="relative aspect-[4/3] overflow-hidden bg-transparent">
+            <div className="relative aspect-[4/3] overflow-hidden bg-white">
               <img
                 src={src}
                 alt={`Produto ${idx + 1}`}
@@ -39,7 +39,8 @@ export default function CarrosselCatalogo() {
                 loading="lazy"
                 onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
               />
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
+              {/* Gradiente escuro apenas sobre a imagem */}
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
             </div>
           </SwiperSlide>
         ))}
@@ -53,15 +54,17 @@ export default function CarrosselCatalogo() {
         ❯
       </button>
 
-      {/* Rodapé idêntico à seção “Materiais Básicos” */}
-      <div className="px-6 py-3 bg-transparent relative z-20 rounded-b-2xl">
+      {/* Rodapé (igual à seção de Materiais Básicos) */}
+      <div className="px-6 py-4 bg-white border-t rounded-b-2xl">
         <div className="flex items-center justify-between">
           <div className="text-base font-semibold text-primary hover:underline cursor-pointer">
             Destaques do Catálogo
           </div>
           <div className="flex items-center gap-2">
             {Array.from({ length: BULLETS }).map((_, i) => {
-              const isActive = activeIndex === i;
+              const isActive =
+                Math.floor(activeIndex / step) === i ||
+                (i === BULLETS - 1 && activeIndex >= imagens.length - step);
               return (
                 <div
                   key={i}
