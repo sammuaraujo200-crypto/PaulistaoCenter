@@ -105,7 +105,7 @@ export default function Parcerias() {
                 {/* Container da logo */}
                 <div
                   className={`flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden mb-4 ${
-                    ["Suvinil", "Center Dias", "Criador do Site","Prisma Esquadrias de Alumínio" ].includes(
+                    ["Suvinil", "Center Dias", "Criador do Site","Prisma Esquadrias de Alumínio"].includes(
                       p.name
                     )
                       ? "w-36 h-36" // logos maiores
