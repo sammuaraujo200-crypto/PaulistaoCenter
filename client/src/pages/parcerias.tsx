@@ -60,9 +60,14 @@ const parceiros = [
     link: "https://www.iraja.com.br/",
   },
   {
+    name: "Prisma Esquadrias de Alumínio",
+    link: "https://www.prismaesquadrias.com.br/",
+  },
+  {
     name: "Construtora Momento",
     link: "https://www.construtoramomento.com.br/",
   },
+  
 ];
 
 export default function Parcerias() {
