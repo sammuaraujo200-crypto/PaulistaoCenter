@@ -6,24 +6,38 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function CarrosselCatalogo() {
-  // Ajuste aqui se precisar: 10 ou 70 (ou outro)
+  // Quantidade total de imagens
   const IMAGES_COUNT = 70;
 
-  // Caminho: public/assets/Catalogo/1.jpg ... 70.jpg
- const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) => `/assets/catalogo/${i + 1}.jpg`);
+  // Extensões que o carrossel tentará carregar
+  const EXTENSIONS = ["jpg", "jpeg", "png"];
 
-  // Quantidade de "bolinhas" que irão aparecer (fixas, ex.: 5)
+  // Gera os caminhos possíveis (ex: /assets/catalogo/1.jpg, /assets/catalogo/1.png, etc.)
+  const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) =>
+    EXTENSIONS.map((ext) => `/assets/catalogo/${i + 1}.${ext}`)
+  );
+
+  // Quantidade fixa de "bolinhas" de navegação
   const BULLETS = 5;
 
   const swiperRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const imagesPerGroup = Math.ceil(IMAGES_COUNT / BULLETS); // quantas imagens correspondem a cada "bolinha"
+  const imagesPerGroup = Math.ceil(IMAGES_COUNT / BULLETS);
   const groupForIndex = (index: number) => Math.floor(index / imagesPerGroup);
+
+  // Função para tentar carregar a primeira imagem válida
+  const getValidImage = (paths: string[]) => {
+    for (const path of paths) {
+      const img = new Image();
+      img.src = path;
+      if (img.complete || img.height > 0) return path;
+    }
+    return paths[0];
+  };
 
   return (
     <div className="bg-white dark:bg-card border rounded-2xl shadow-lg overflow-hidden h-full">
-      {/* O card inteiro para casar com o estilo dos outros */}
       <div className="p-0">
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -36,41 +50,40 @@ export default function CarrosselCatalogo() {
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           className="w-full"
         >
-          {imagens.map((src, idx) => (
+          {imagens.map((srcArray, idx) => (
             <SwiperSlide key={idx}>
-              {/* mesma proporção dos cards: aspect 4/3 */}
               <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
                 <img
-                  src={src}
+                  src={getValidImage(srcArray)}
                   alt={`Produto ${idx + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   loading="lazy"
                   onError={(e) => {
-                    // Se a imagem não carregar, reduz a opacidade (evita mostrar o ícone quebrado)
-                    (e.target as HTMLImageElement).style.opacity = "0.02";
+                    // Se não carregar, apenas oculta
+                    (e.target as HTMLImageElement).style.display = "none";
                   }}
                 />
-
-                {/* overlay escuro como nos outros cards */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-                {/* título no canto inferior esquerdo (igual aos cards) */}
                 <div className="absolute left-4 bottom-4 text-white">
-                  <h3 className="text-lg md:text-xl font-bold leading-tight"></h3>
-                  <p className="text-xs md:text-sm opacity-90"></p>
+                  <h3 className="text-lg md:text-xl font-bold leading-tight">
+                    Destaques do Catálogo
+                  </h3>
+                  <p className="text-xs md:text-sm opacity-90">
+                    Produtos em destaque selecionados
+                  </p>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
 
-        {/* Paginação personalizada (apenas BULLETS pontos) */}
+        {/* Paginação personalizada */}
         <div className="px-4 py-4 border-t bg-white">
           <div className="flex items-center justify-between">
-            {/* título pequeno à esquerda (opcional) */}
-            <div className="hidden sm:block text-sm font-medium text-secondary">Destaques do Catálogo</div>
+            <div className="hidden sm:block text-sm font-medium text-secondary">
+              Destaques do Catálogo
+            </div>
 
-            {/* bolinhas centralizadas */}
             <div className="flex items-center gap-2">
               {Array.from({ length: BULLETS }).map((_, bIndex) => {
                 const isActive = groupForIndex(activeIndex) === bIndex;
@@ -78,19 +91,19 @@ export default function CarrosselCatalogo() {
                   <button
                     key={bIndex}
                     onClick={() => {
-                      // calcula índice alvo para o grupo (vai pro início do grupo)
                       const target = Math.min(bIndex * imagesPerGroup, IMAGES_COUNT - 1);
                       swiperRef.current?.slideToLoop(target, 400);
                       setActiveIndex(target);
                     }}
-                    className={`w-3 h-3 rounded-full transition-all ${isActive ? "bg-primary" : "bg-slate-300"}`}
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      isActive ? "bg-primary scale-110" : "bg-slate-300"
+                    }`}
                     aria-label={`Ir para grupo ${bIndex + 1}`}
                   />
                 );
               })}
             </div>
 
-            {/* botão vazio à direita para manter espaçamento como no layout (pode remover) */}
             <div style={{ width: 32 }} />
           </div>
         </div>
