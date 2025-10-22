@@ -9,9 +9,9 @@ export default function CarrosselCatalogo() {
   const swiperRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // até 70 imagens (pode aumentar depois)
   const imagens = Array.from({ length: 70 }, (_, i) => `/catalogo/${i + 1}.jpg`);
-  const BULLETS = 5; // mostra só 5 bolinhas
-  const step = Math.ceil(imagens.length / BULLETS);
+  const BULLETS = 5; // número fixo de bolinhas
 
   return (
     <div className="relative rounded-2xl overflow-hidden shadow-lg bg-white h-full">
@@ -39,7 +39,7 @@ export default function CarrosselCatalogo() {
                 loading="lazy"
                 onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
               />
-              {/* Gradiente escuro apenas sobre a imagem */}
+              {/* Gradiente escuro somente sobre a imagem */}
               <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
             </div>
           </SwiperSlide>
@@ -54,17 +54,15 @@ export default function CarrosselCatalogo() {
         ❯
       </button>
 
-      {/* Rodapé (igual à seção de Materiais Básicos) */}
+      {/* Rodapé — igual ao “Ver produtos” */}
       <div className="px-6 py-4 bg-white border-t rounded-b-2xl">
         <div className="flex items-center justify-between">
-          <div className="text-base font-semibold text-primary hover:underline cursor-pointer">
+          <div className="text-base font-semibold text-primary cursor-pointer hover:underline">
             Destaques do Catálogo
           </div>
           <div className="flex items-center gap-2">
             {Array.from({ length: BULLETS }).map((_, i) => {
-              const isActive =
-                Math.floor(activeIndex / step) === i ||
-                (i === BULLETS - 1 && activeIndex >= imagens.length - step);
+              const isActive = activeIndex % BULLETS === i;
               return (
                 <div
                   key={i}
