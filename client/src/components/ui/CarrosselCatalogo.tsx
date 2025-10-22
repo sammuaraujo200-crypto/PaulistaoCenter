@@ -14,7 +14,7 @@ export default function CarrosselCatalogo() {
   const BULLETS = 5; // número fixo de bolinhas
 
   return (
-    <div className="relative rounded-2xl overflow-hidden bg-white h-full">
+   <div className="relative rounded-2xl overflow-hidden shadow-lg bg-white h-auto">
       <Swiper
         modules={[Navigation, Autoplay]}
         onSwiper={(s) => (swiperRef.current = s)}
