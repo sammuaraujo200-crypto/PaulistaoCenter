@@ -55,7 +55,7 @@ export default function CarrosselCatalogo() {
       </button>
 
       {/* Rodapé — igual ao “Ver produtos” */}
-<div className="px-6 py-4 bg-white border-t border-white/50 rounded-b-2xl z-20 relative">
+<div className="px-6 py-4 bg-white border-t border-white/70 rounded-b-2xl z-20 relative">
   <div className="flex items-center justify-between">
     <div>
       <h3 className="text-base font-semibold text-blue-800">Destaques do Catálogo</h3>
