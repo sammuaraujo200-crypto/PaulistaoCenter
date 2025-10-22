@@ -54,20 +54,20 @@ export default function CarrosselCatalogo() {
         ❯
       </button>
 
-      {/* Rodapé — igual ao “Ver produtos” */}
-<div className="bg-white px-6 py-5 rounded-b-2xl">
+      {/* substitua pelo bloco abaixo */}
+<div className="px-6 py-4 bg-white border-t border-white/20 rounded-b-2xl z-20 relative">
   <div className="flex items-center justify-between">
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900">Destaques do Catálogo</h3>
-    </div>
-    <div className="flex items-center gap-2">
-      {Array.from({ length: BULLETS }).map((_, i) => {
-        const isActive = activeIndex % BULLETS === i;
+    <button className="text-base font-semibold text-primary hover:underline">
+      Destaques do Catálogo
+    </button>
+    <div className="flex items-center gap-3">
+      {Array.from({ length: 5 }).map((_, i) => {
+        const isActive = groupForIndex(activeIndex) === i;
         return (
-          <div
+          <span
             key={i}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${
-              isActive ? "bg-primary scale-110" : "bg-gray-300"
+            className={`w-3 h-3 rounded-full transition-transform duration-300 ${
+              isActive ? "bg-primary scale-110" : "bg-slate-300"
                   }`}
                 />
               );
