@@ -9,15 +9,15 @@ export default function CarrosselCatalogo() {
   // Quantidade total de imagens
   const IMAGES_COUNT = 70;
 
-  // Extensões que o carrossel tentará carregar
+  // Extensões possíveis
   const EXTENSIONS = ["jpg", "jpeg", "png"];
 
-  // Gera os caminhos possíveis (ex: /assets/catalogo/1.jpg, /assets/catalogo/1.png, etc.)
+  // Gera caminhos válidos com base na pasta /public/catalogo/
   const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) =>
-    EXTENSIONS.map((ext) => `/assets/catalogo/${i + 1}.${ext}`)
+    EXTENSIONS.map((ext) => `/catalogo/${i + 1}.${ext}`)
   );
 
-  // Quantidade fixa de "bolinhas" de navegação
+  // Quantidade de "bolinhas" de navegação
   const BULLETS = 5;
 
   const swiperRef = useRef<any>(null);
@@ -26,12 +26,12 @@ export default function CarrosselCatalogo() {
   const imagesPerGroup = Math.ceil(IMAGES_COUNT / BULLETS);
   const groupForIndex = (index: number) => Math.floor(index / imagesPerGroup);
 
-  // Função para tentar carregar a primeira imagem válida
+  // Função para retornar o primeiro caminho de imagem válido
   const getValidImage = (paths: string[]) => {
     for (const path of paths) {
       const img = new Image();
       img.src = path;
-      if (img.complete || img.height > 0) return path;
+      if (img.complete) return path;
     }
     return paths[0];
   };
@@ -59,11 +59,15 @@ export default function CarrosselCatalogo() {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   loading="lazy"
                   onError={(e) => {
-                    // Se não carregar, apenas oculta
+                    // Se a imagem não carregar, oculta o elemento
                     (e.target as HTMLImageElement).style.display = "none";
                   }}
                 />
+
+                {/* overlay escuro como nos outros cards */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+                {/* título sobreposto */}
                 <div className="absolute left-4 bottom-4 text-white">
                   <h3 className="text-lg md:text-xl font-bold leading-tight">
                     Destaques do Catálogo
