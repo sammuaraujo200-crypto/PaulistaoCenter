@@ -40,7 +40,7 @@ export default function CarrosselCatalogo() {
                 onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
               />
               {/* Gradiente escuro somente sobre a imagem */}
-              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-whitez-10 " />
             </div>
           </SwiperSlide>
         ))}
