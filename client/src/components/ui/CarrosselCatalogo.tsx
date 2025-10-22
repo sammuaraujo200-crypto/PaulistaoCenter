@@ -1,27 +1,27 @@
 // src/components/ui/CarrosselCatalogo.tsx
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
 export default function CarrosselCatalogo() {
-  const IMAGES_COUNT = 70; // pode ser 100, 200, etc.
+  const IMAGES_COUNT = 70; // Pode ser 100, 200 etc.
   const EXTENSIONS = ["jpg", "jpeg", "png"];
 
-  // Cria as combinações de caminhos para cada imagem
+  // Cria os caminhos possíveis
   const imagens = Array.from({ length: IMAGES_COUNT }, (_, i) =>
     EXTENSIONS.map((ext) => `/catalogo/${i + 1}.${ext}`)
   );
 
-  const BULLETS = 5; // quantidade de bolinhas
+  const BULLETS = 5;
   const swiperRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const imagesPerGroup = Math.ceil(IMAGES_COUNT / BULLETS);
   const groupForIndex = (index: number) => Math.floor(index / imagesPerGroup);
 
-  // Função para carregar imagem válida
+  // Detecta imagem válida
   const getValidImage = (paths: string[]) => {
     for (const path of paths) {
       const img = new Image();
@@ -30,6 +30,19 @@ export default function CarrosselCatalogo() {
     }
     return paths[0];
   };
+
+  // Faz as bolinhas atualizarem automaticamente no loop
+  useEffect(() => {
+    const swiper = swiperRef.current;
+    if (!swiper) return;
+
+    const interval = setInterval(() => {
+      if (!swiper?.realIndex) return;
+      setActiveIndex(swiper.realIndex);
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative bg-white dark:bg-card border rounded-2xl shadow-lg overflow-hidden h-full">
@@ -50,7 +63,7 @@ export default function CarrosselCatalogo() {
       >
         {imagens.map((srcArray, idx) => (
           <SwiperSlide key={idx}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl bg-white">
               <img
                 src={getValidImage(srcArray)}
                 alt={`Produto ${idx + 1}`}
@@ -67,10 +80,10 @@ export default function CarrosselCatalogo() {
               {/* Texto acima do overlay */}
               <div className="absolute left-4 bottom-4 text-white z-20">
                 <h3 className="text-lg md:text-xl font-bold leading-tight">
-                 
+                  Destaques do Catálogo
                 </h3>
                 <p className="text-xs md:text-sm opacity-90">
-                 
+                  Produtos em destaque selecionados
                 </p>
               </div>
             </div>
@@ -87,7 +100,7 @@ export default function CarrosselCatalogo() {
       </button>
 
       {/* Paginação personalizada */}
-      <div className="px-4 py-4 border-t bg-white relative z-20">
+      <div className="px-4 py-4 bg-white relative z-20 border-t-0 shadow-inner">
         <div className="flex items-center justify-between">
           <div className="hidden sm:block text-sm font-medium text-secondary">
             Destaques do Catálogo
