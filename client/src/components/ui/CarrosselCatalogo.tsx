@@ -10,7 +10,7 @@ export default function CarrosselCatalogo() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // até 70 imagens (pode aumentar depois)
-  const imagens = Array.from({ length: 15 }, (_, i) => `/catalogo/${i + 1}.jpg`);
+  const imagens = Array.from({ length: 16 }, (_, i) => `/catalogo/${i + 1}.jpg`);
   const BULLETS = 5; // número fixo de bolinhas
 
  return (
